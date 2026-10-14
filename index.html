@@ -2,175 +2,171 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#10172b">
-  <meta name="description" content="期限までに通信塔を再起動する、周回型インクリメンタルゲーム。">
-  <title>夜明けの機関</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f8f1dc">
+  <meta name="description" content="冒険者ギルド周回ゲームのスマートフォン向けUI試作。">
+  <title>ギルド再建記｜UI試作</title>
   <style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&family=Outfit:wght@400;600;700;800&display=swap');
-:root{font-family:'Outfit','Noto Sans JP',sans-serif;color:#edf2fb;background:#0d1425;font-synthesis:none}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 75% -10%,#243958,transparent 38%),#0d1425}button{font:inherit;cursor:pointer}button:disabled{cursor:not-allowed;opacity:.45}[hidden]{display:none!important}.shell{max-width:760px;margin:auto;padding:0 18px}.masthead{height:64px;display:flex;align-items:center;justify-content:space-between;gap:10px}.brand{display:flex;align-items:center;gap:10px}.brand-mark{font-size:28px;color:#f6c47d}.brand small{display:block;color:#8599b9;font-size:9px;font-weight:700;letter-spacing:2px}.brand h1{font-size:19px;margin:0;letter-spacing:.08em}.quiet-button{color:#bfcce2;background:#ffffff0a;border:1px solid #ffffff24;border-radius:100px;padding:8px 12px;font-size:11px;white-space:nowrap}.panel{background:#172238;border:1px solid #ffffff19;border-radius:18px;box-shadow:0 16px 44px #0002}.status{padding:17px 20px}.status-top{display:flex;align-items:center;justify-content:space-between;color:#a5b5ce;font-size:11px}.status-top strong{color:#f6c47d;font-size:17px}.mission{display:flex;justify-content:space-between;gap:12px;margin-top:13px;font-size:13px}.mission strong{color:#f6c47d}.progress-track{height:8px;border-radius:20px;background:#0a1222;overflow:hidden;margin:9px 0 13px}.progress-fill{height:100%;border-radius:20px;background:linear-gradient(90deg,#e69857,#ffe6aa);transition:width .25s}.resources{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.resource{background:#101b2e;border:1px solid #ffffff0d;border-radius:10px;padding:8px 10px}.resource span,.resource small{display:block;color:#a7b9d3;font-size:10px}.resource strong{display:block;font-size:22px;line-height:1.12;margin:3px 0}.resource small{color:#82bca9}.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:12px 0}.tab{height:40px;border-radius:10px;border:1px solid #ffffff21;background:#1b2941;color:#b4c4db;font-size:12px;font-weight:700}.tab.active{background:#f3bf79;color:#162139;border-color:#f3bf79}.game-panel{padding:18px 20px}.section-heading{display:flex;align-items:center;justify-content:space-between;gap:10px}.section-heading h2{font-size:19px;margin:3px 0 0}.section-kicker{color:#eeb879;font-size:10px;font-weight:800;letter-spacing:1.6px}.pill{background:#293b58;border-radius:99px;color:#d4e0f1;padding:6px 10px;font-size:11px;white-space:nowrap}.panel-note{font-size:11px;color:#a2b3cc;line-height:1.5;margin:11px 0 14px}.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.action-card{min-height:72px;display:flex;align-items:center;gap:12px;text-align:left;color:#edf2fb;background:#22314b;border:1px solid #ffffff1b;border-radius:11px;padding:11px}.action-card:hover:not(:disabled),.tree-card:hover:not(:disabled){border-color:#f6c47d}.action-card.transmit{background:#33405a;border-color:#eeb8796b}.action-glyph{font-size:22px;color:#f6c47d;width:25px;text-align:center}.action-card strong,.action-card small{display:block}.action-card strong{font-size:12px}.action-card small{color:#a8b9d0;font-size:10px;line-height:1.3;margin-top:4px}.primary-button{width:100%;display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding:12px 15px;color:#172037;background:#f3bf79;border:0;border-radius:10px;font-size:14px;font-weight:800}.primary-button:hover:not(:disabled){background:#ffcf91}.primary-button span{font-size:20px}.log-inline{border-top:1px solid #ffffff13;margin-top:14px;padding-top:10px;color:#879ab7;font-size:10px}.log-inline strong{color:#c7d4e5}.log-inline p{margin:4px 0}.branch-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:12px}.branch-tab{background:#22314b;color:#b2c4de;border:1px solid #ffffff22;border-radius:9px;padding:9px 3px;font-size:11px}.branch-tab.active{border-color:#eeb879;background:#534a45;color:#ffe4b4}.tree-rows{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-height:55vh;overflow:auto}.tree-card{min-height:100px;display:flex;flex-direction:column;align-items:flex-start;gap:5px;background:#20304a;border:1px solid #ffffff1d;border-radius:11px;padding:10px;color:#ecf1fa;text-align:left}.tree-card.owned{background:#23403f;border-color:#6cc0a270}.tree-tier{color:#91a6c4;font-size:9px}.tree-name{font-size:13px;font-weight:800}.tree-effect{color:#b2c3d9;font-size:10px;line-height:1.3}.tree-cost{color:#f4c988;font-size:10px;margin-top:auto}.more-button{grid-column:1/-1;background:#ffffff0a;color:#bccbe0;border:1px solid #ffffff21;border-radius:9px;padding:10px}.shard-total{display:flex;align-items:center;gap:12px;background:#413556;border:1px solid #c49af242;border-radius:11px;padding:13px;margin:13px 0}.shard-total span,.shard-total small{font-size:11px;color:#d2bfe8}.shard-total strong{color:#f2d7ff;font-size:27px}.shard-total small{margin-left:auto}.legacy-list{display:grid;grid-template-columns:1fr 1fr;gap:7px}.legacy-item{display:flex;align-items:center;justify-content:space-between;gap:5px;text-align:left;color:#eeeaf7;background:#242b44;border:1px solid #ffffff1b;border-radius:10px;padding:10px}.legacy-item strong,.legacy-item small{display:block}.legacy-item strong{font-size:11px}.legacy-item small{color:#abb7cf;font-size:9px;margin-top:3px}.legacy-price{color:#e4c7f8;font-size:10px;white-space:nowrap}.reset-button{display:block;margin:20px auto 0;background:transparent;border:0;color:#8495af;font-size:11px}footer{text-align:center;color:#627490;font-size:10px;padding:25px}.modal{width:min(440px,calc(100% - 28px));border:1px solid #d9ad7466;border-radius:18px;background:#18243b;color:#edf2fb;padding:0;box-shadow:0 25px 90px #0009}.modal::backdrop{background:#080d19d9}.modal-inner{padding:26px}.modal h2{font-size:25px;margin:10px 0}.modal p{color:#b9c8dd;font-size:13px;line-height:1.8}.result-shards{display:flex;justify-content:space-between;align-items:center;background:#413556;border-radius:10px;padding:11px;margin-top:18px;font-size:12px}.result-shards strong{color:#f0d3ff;font-size:22px}@media(max-width:480px){.shell{padding:0 10px}.masthead{height:56px}.brand h1{font-size:16px}.brand small{font-size:8px}.status{padding:12px}.status-top strong{font-size:15px}.mission{font-size:11px;margin-top:9px}.resource{padding:6px}.resource strong{font-size:19px}.game-panel{padding:14px}.panel-note{margin:8px 0 11px}.action-card{min-height:64px;padding:8px;gap:7px}.action-card strong{font-size:11px}.action-card small{font-size:9px}.action-glyph{font-size:18px;width:20px}.legacy-list{grid-template-columns:1fr}.shard-total small{font-size:9px}}
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Nunito:wght@600;700;800;900&display=swap');
+:root{font-family:'Nunito','M PLUS Rounded 1c',sans-serif;color:#27364a;background:#e9dfc8;font-synthesis:none;--ink:#27364a;--muted:#687486;--paper:#fffaf0;--line:#dfd4bd;--gold:#e7a851;--green:#3d8a65;--blue:#3979a8}*{box-sizing:border-box}body{margin:0;background:linear-gradient(90deg,#e4d8bd,#f8f2e5 50%,#e4d8bd)}button,select{font:inherit}button{cursor:pointer}button:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #347fb6;outline-offset:2px}[hidden]{display:none!important}.app-shell{height:100vh;height:100dvh;max-width:780px;min-height:500px;margin:auto;display:flex;flex-direction:column;background:#faf5e9;box-shadow:0 0 60px #66543b25;overflow:hidden}.topbar{flex:none;height:59px;padding:8px 16px;background:var(--paper);display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid #e5dbc9}.brand{display:flex;align-items:center;gap:9px}.crest{height:36px;width:36px;display:grid;place-items:center;background:#2b7557;color:#ffe0a0;border:3px solid #204f40;border-radius:9px;font-size:22px;box-shadow:inset 0 -4px #17503a}.brand small{display:block;font-size:9px;color:#9a7357;font-weight:800;letter-spacing:.09em}.brand strong{display:block;font-size:17px;line-height:1.1;font-weight:900;letter-spacing:.02em}.icon-button{border:2px solid #d8c8a9;background:#fff9ec;color:#685039;border-radius:9px;padding:7px 11px;font-size:11px;font-weight:800}.preview-strip{flex:none;min-height:33px;background:#f2e6ca;padding:4px 15px;display:flex;align-items:center;justify-content:space-between;gap:8px;color:#836a48;font-size:10px;font-weight:800}.preview-strip label{white-space:nowrap}.preview-strip select{max-width:100px;border:1px solid #c9b892;border-radius:6px;background:#fffaf0;color:#5a4632;font-size:11px;font-weight:800;padding:2px}.hud{flex:none;background:#fffaf0;border-bottom:2px solid #d9cab0;padding:9px 16px 10px}.deadline-line{display:flex;align-items:center;gap:10px;min-height:23px}.day-chip{background:#2e7656;color:white;font-size:11px;font-weight:900;letter-spacing:.07em;border-radius:5px;padding:3px 7px}.deadline-copy{font-size:12px;font-weight:700}.deadline-copy b{color:#bb5c3d}.hud-stats{display:grid;grid-template-columns:1fr 1fr 1.25fr;gap:6px;margin-top:8px}.hud-stat{background:#f6efdf;border:1px solid #e7dcc7;border-radius:8px;padding:5px 8px;min-width:0}.hud-stat small{display:block;color:#7d786d;font-size:9px;font-weight:800;white-space:nowrap}.hud-stat strong{display:block;font-size:17px;line-height:1.1;font-weight:900;white-space:nowrap}.hud-stat strong span{font-size:11px;margin-left:1px;color:#7c776c}.loot-stat{background:#fff1d8;border-color:#e9ca94}.loot-stat strong{color:#a76624}.content{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:16px 16px 20px;scrollbar-color:#c7b998 transparent}.screen{max-width:650px;margin:0 auto}.screen-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:12px}.eyebrow{font-size:9px;font-weight:900;color:#a66d36;letter-spacing:.16em}.screen-head h1{font-size:21px;line-height:1.2;margin:2px 0 0;letter-spacing:.02em}.screen-head h1 span{font-size:12px;color:#7f897f;white-space:nowrap}.area-badge{border:1px solid #abd2a9;background:#e5f4df;color:#36714e;border-radius:99px;padding:5px 8px;white-space:nowrap;font-size:10px;font-weight:900}.area-badge.amber{border-color:#e5c39a;background:#fff0d9;color:#a4682b}.area-badge.purple{border-color:#cec1e7;background:#f1eafa;color:#725694}.battle-stage{position:relative;height:244px;overflow:hidden;background:linear-gradient(#9fd6da 0 55%,#cfe6bb 55% 75%,#8ab66e 75%);border:3px solid #3f704f;border-radius:12px;box-shadow:0 5px 0 #284c39,inset 0 0 0 3px #ecf5d3;image-rendering:pixelated}.battle-stage:before{content:'';position:absolute;inset:0;background:linear-gradient(transparent 0 91%,#709c5b 91% 94%,transparent 94%);background-size:100% 24px;opacity:.15}.pixel-sun{position:absolute;width:52px;height:52px;right:20%;top:32px;background:#ffeb97;box-shadow:0 0 0 8px #ffeb9755}.pixel-cloud{position:absolute;height:12px;width:70px;background:#f8f8e8;box-shadow:15px -10px #f8f8e8,-10px 5px #f8f8e8}.cloud-a{left:8%;top:33px}.cloud-b{right:4%;top:67px;transform:scale(.65)}.pixel-hill{position:absolute;bottom:39px;height:100px;width:180px;background:#80b87b;clip-path:polygon(0 100%,25% 35%,45% 55%,65% 0,100% 100%)}.hill-a{left:-30px}.hill-b{right:-20px;background:#75a974;transform:scaleX(-1)}.ground{position:absolute;bottom:0;left:0;right:0;height:45px;background:repeating-linear-gradient(90deg,#4f8b50 0 23px,#589652 23px 43px);border-top:7px solid #376e44}.battle-tip{position:absolute;left:10px;top:9px;z-index:2;border-radius:7px;background:#fffaf0ec;padding:6px 9px;font-size:10px;font-weight:800;box-shadow:0 2px 0 #48795655}.battle-tip b{color:#b36428}.sprites{position:absolute;inset:auto 12px 17px;display:flex;align-items:flex-end;justify-content:space-between;z-index:2}.sprite-side{display:flex;flex-direction:column;align-items:center;min-width:115px;background:#fff9eade;border:2px solid #3f6b49;border-radius:9px;padding:4px 7px 6px;box-shadow:0 3px 0 #28523e}.sprite-pair{display:flex;align-items:flex-end;height:93px}.sprite{width:68px;height:80px;image-rendering:pixelated;filter:drop-shadow(3px 5px 0 #223d2f44);animation:bob 2.7s ease-in-out infinite}.hero-sprite{width:74px;height:88px}.pet-sprite{width:50px;height:60px;margin-left:-14px;animation-delay:-1s}.enemy-sprite{height:93px;width:77px;animation-delay:-.6s}.sprite-name{font-size:10px;font-weight:900;white-space:nowrap}.sprite-side small{font-size:9px;font-weight:800;color:#5c6258}.hp-track{height:6px;width:100%;background:#cebb9e;border:1px solid #5e7154;border-radius:99px;overflow:hidden;margin:3px 0 1px}.hp-track span{display:block;height:100%;background:#5ec17e}.enemy-hp span{background:#ee7660}.versus{align-self:center;background:#fff4d8;color:#a65d33;border:2px solid #b97749;border-radius:50%;height:34px;width:34px;display:grid;place-items:center;font-size:11px;font-weight:900;margin-bottom:30px}.loot-note{display:flex;align-items:center;gap:10px;background:#fff3dd;border:1px solid #ead5aa;border-radius:10px;padding:9px 11px;margin-top:14px}.bag-icon{font-size:19px;color:#a27335}.loot-note strong,.loot-note small{display:block}.loot-note strong{font-size:11px}.loot-note small{color:#796f61;font-size:10px;margin-top:2px}.action-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}.action-button{min-height:52px;border:0;border-radius:10px;font-size:13px;font-weight:900;box-shadow:inset 0 -4px #0002}.action-button span{font-size:19px;vertical-align:middle}.action-button.fight{background:#e26e58;color:#fff}.action-button.gather{background:#74b77b;color:#163a29}.action-button.return{background:#e8dbb9;color:#4e503e}.action-button:active,.replay-button:active,.debt-button:active{transform:translateY(2px);box-shadow:inset 0 -1px #0002}.auto-settings{margin-top:10px;border:1px solid #ddd2bd;border-radius:10px;background:#fffaf0;padding:9px 11px;font-size:11px}.auto-settings summary{display:flex;justify-content:space-between;cursor:pointer;font-weight:900;list-style:none}.auto-settings summary::-webkit-details-marker{display:none}.auto-settings summary strong{color:#9d6a46}.auto-settings label{display:block;margin-top:9px;color:#4d604e;font-weight:700}.auto-settings input{accent-color:#3d8a65}.auto-settings p{font-size:9px;color:#919082;margin:8px 0 2px}.next-hint{display:flex;gap:9px;align-items:center;margin-top:10px;padding:10px;border:2px dashed #e1c999;border-radius:10px;background:#fff9ed}.hint-star{font-size:23px;color:#d4a041}.next-hint strong,.next-hint small{display:block}.next-hint strong{font-size:11px}.next-hint small{font-size:10px;color:#7f7769;margin-top:2px}.debt-card{background:linear-gradient(135deg,#fff7e9,#f8e8ca);border:2px solid #dfb979;border-radius:13px;padding:15px;box-shadow:0 4px 0 #cbad78}.debt-top{display:flex;justify-content:space-between;align-items:end}.debt-top span{font-size:12px;font-weight:900;color:#8b643a}.debt-top strong{font-size:29px;line-height:1;color:#98552c}.debt-progress{height:10px;background:#e2caa2;border-radius:99px;overflow:hidden;margin:12px 0}.debt-progress span{display:block;width:65%;height:100%;background:#e9aa58;border-radius:99px}.debt-card p{font-size:11px;line-height:1.5;margin:0 0 12px;color:#745e45}.debt-button{width:100%;min-height:40px;background:#a9693a;color:white;border:0;border-radius:8px;font-size:12px;font-weight:900;box-shadow:inset 0 -3px #0002}.debt-button small{font-size:10px;opacity:.8;margin-left:7px}.block-eyebrow{margin:19px 0 8px}.purchase-list,.heaven-list{display:flex;flex-direction:column;gap:8px}.purchase-card,.heaven-upgrade{width:100%;display:flex;align-items:center;gap:10px;background:#fffdf6;border:1px solid #ded5c3;border-radius:10px;padding:10px;text-align:left;color:var(--ink)}.purchase-icon{flex:none;width:39px;height:39px;border-radius:8px;display:grid;place-items:center;font-size:22px}.purchase-icon.sword{background:#e2e9f5;color:#467cad}.purchase-icon.skill{background:#e5f2df;color:#34865d}.purchase-card>span:nth-child(2),.heaven-upgrade>span:nth-child(2){flex:1;min-width:0}.purchase-card strong,.purchase-card small,.heaven-upgrade strong,.heaven-upgrade small{display:block}.purchase-card strong,.heaven-upgrade strong{font-size:12px}.purchase-card small,.heaven-upgrade small{font-size:10px;color:#748073;margin-top:3px}.purchase-card b,.heaven-upgrade b{font-size:12px;color:#a66528;white-space:nowrap}.purchase-card i{font-style:normal;font-size:9px;color:#717988;font-weight:700;margin-left:4px}.party-card{border:1px solid #ded5c3;border-radius:11px;padding:12px;margin-top:15px;background:#fffdf6}.party-head{display:flex;justify-content:space-between;gap:8px}.party-head strong{font-size:11px}.party-head span{font-size:10px;color:#75806f}.party-slots{display:flex;gap:6px;margin-top:10px}.party-slots span{flex:1;display:grid;place-items:center;height:43px;border:2px solid #d4c7b0;border-radius:8px;background:#f1eadb;font-size:9px;font-weight:900}.party-slots .pet-slot{background:#d9f0ea;border-color:#91cdbd}.party-slots .empty-slot{font-size:18px;color:#b1a58f;border-style:dashed}.party-card p{font-size:10px;color:#777d70;margin:10px 0 0}.skill-lead{font-size:11px;color:#677686;line-height:1.55;margin:0 0 12px}.skill-categories{display:flex;gap:6px;overflow-x:auto;padding:2px 0 10px;scrollbar-width:none}.skill-categories::-webkit-scrollbar{display:none}.category-tab{flex:none;background:#fff9ed;border:1px solid #daccb4;border-radius:99px;color:#6f756c;padding:7px 11px;font-size:11px;font-weight:900}.category-tab.active{background:#326d56;border-color:#326d56;color:white}.skill-list{display:flex;flex-direction:column;gap:7px;padding:4px 0 5px}.skill-node{width:100%;position:relative;display:grid;grid-template-columns:42px minmax(0,1fr) auto;gap:10px;align-items:center;text-align:left;background:#fffdf7;border:2px solid #dad5c8;border-radius:11px;padding:10px;color:var(--ink)}.skill-node:before{content:'';position:absolute;left:29px;top:-11px;height:11px;width:3px;background:#b6c7b0}.skill-node:first-child:before{display:none}.skill-node.unavailable{opacity:.73}.node-icon{width:40px;height:40px;border-radius:8px;display:grid;place-items:center;font-size:21px;background:#e8edf1}.skill-node.common{border-color:#bfc4c5}.skill-node.uncommon{border-color:#78bb87}.skill-node.rare{border-color:#6aa9d8}.skill-node.epic{border-color:#ad84cb}.skill-node.legendary{border-color:#d9af51}.skill-node.uncommon .node-icon{background:#e2f3e2;color:#42835a}.skill-node.rare .node-icon{background:#e2f0fc;color:#397bb1}.skill-node.epic .node-icon{background:#f0e4fa;color:#8465a7}.skill-node.legendary .node-icon{background:#fff2cf;color:#b68426}.node-info strong,.node-info small,.node-info em{display:block}.node-info strong{font-size:12px}.node-info small{font-size:10px;color:#6a776e;margin-top:2px;line-height:1.35}.node-info em{font-style:normal;font-size:9px;color:#947e63;margin-top:3px}.node-price{text-align:right;font-size:11px;font-weight:900;color:#a4662b;white-space:nowrap}.rarity{font-size:9px;font-weight:900;margin-left:4px}.common .rarity{color:#82888d}.uncommon .rarity{color:#389456}.rare .rarity{color:#367fbd}.epic .rarity{color:#9262b2}.legendary .rarity{color:#b88419}.skill-footer{font-size:10px;color:#8a8b79;margin:10px 0}.heaven-hero{position:relative;overflow:hidden;border-radius:12px;background:linear-gradient(130deg,#68558f,#9580ad);color:#fff;padding:19px 18px 18px;min-height:118px;box-shadow:0 4px 0 #655177}.heaven-hero:before{content:'✦  ·  ✧  ·  ✦';position:absolute;right:5%;top:13px;color:#e6d5ff99;font-size:22px;letter-spacing:15px}.heaven-spark{font-size:27px;color:#fff2be}.heaven-hero strong{display:block;font-size:16px;margin-top:2px}.heaven-hero p{font-size:10px;line-height:1.6;max-width:275px;margin:5px 0 0;color:#f0e9fa}.memory-summary{background:#fffaf1;border:1px solid #d9cde5;border-radius:11px;margin-top:13px;padding:11px}.memory-summary span{display:flex;justify-content:space-between;font-size:10px;color:#776a7f;margin:4px 0}.memory-summary span b{color:#5b496e}.memory-summary strong{display:flex;justify-content:space-between;border-top:1px solid #ddd0e3;padding-top:8px;margin-top:8px;font-size:12px}.memory-summary em{font-style:normal;font-size:19px;color:#8055a1}.heaven-upgrade>span:first-child{flex:none;width:37px;height:37px;display:grid;place-items:center;background:#eee3f8;color:#845caa;border-radius:8px;font-size:20px}.heaven-upgrade b{font-size:10px;color:#8864a2}.replay-button{display:block;width:100%;margin-top:15px;padding:13px;border:0;border-radius:9px;background:#3e815e;color:white;font-size:13px;font-weight:900;box-shadow:inset 0 -4px #0002}.bottom-nav{flex:none;display:grid;grid-template-columns:repeat(4,1fr);height:66px;padding-bottom:env(safe-area-inset-bottom);background:#fffcf5;border-top:2px solid #d8c9ad}.nav-item{border:0;background:transparent;color:#8b8f87;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0;font-size:10px;font-weight:900}.nav-item span{font-size:20px;line-height:1.2}.nav-item.active{color:#337858;background:#edf5e7}.dialog{width:min(430px,calc(100% - 24px));border:3px solid #b58e5e;border-radius:15px;background:#fffaf0;color:var(--ink);padding:0;box-shadow:0 15px 0 #3f35384d,0 30px 70px #302b3370}.dialog::backdrop{background:#273243b8}.dialog-body{padding:22px}.dialog h2{font-size:22px;line-height:1.4;margin:10px 0}.dialog p{font-size:12px;line-height:1.85;color:#68717a}.dialog-close{width:100%;border:0;border-radius:9px;background:#3e815e;color:#fff;padding:12px;margin-top:8px;font-weight:900}.detail-meta{font-size:11px;padding:10px;background:#f4ead5;border-radius:8px;color:#7a6043}.toast{position:fixed;z-index:10;left:50%;bottom:82px;transform:translate(-50%,20px);width:max-content;max-width:min(370px,calc(100% - 24px));border-radius:9px;background:#263b38;color:#fff;box-shadow:0 8px 28px #15201e55;padding:9px 13px;font-size:11px;font-weight:800;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}@keyframes bob{50%{transform:translateY(-3px)}}@media(max-width:400px){.topbar{padding:7px 12px}.preview-strip{padding:4px 11px}.hud{padding:7px 11px}.content{padding:12px 11px 17px}.battle-stage{height:215px}.sprite{transform-origin:bottom center}.sprite-pair{height:80px}.hero-sprite{height:75px;width:62px}.pet-sprite{height:53px;width:43px}.enemy-sprite{height:78px;width:64px}.sprite-side{min-width:98px;padding:3px 5px 5px}.sprite-name{font-size:9px}.battle-tip{font-size:9px}.screen-head h1{font-size:19px}.area-badge{font-size:9px}.action-button{min-height:48px;font-size:11px}.hud-stat strong{font-size:16px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+.reward-card{border:2px solid #e1b767;border-radius:13px;background:linear-gradient(135deg,#fff4cc,#fffaf0);padding:15px;box-shadow:0 4px 0 #c99550}.reward-card h2{margin:4px 0 6px;font-size:20px;color:#9e672d}.reward-card p{font-size:10px;line-height:1.55;color:#79664a;margin:0 0 12px}.reward-choices{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.ally-choice{border:2px solid #d4b68b;border-radius:9px;background:#fffaf0;padding:8px 4px;color:#473e37;text-align:center}.ally-choice span,.ally-choice strong,.ally-choice small{display:block}.ally-choice span{font-size:23px;color:#b17c3b}.ally-choice strong{font-size:11px}.ally-choice small{font-size:9px;color:#847b68}.ally-choice:active{background:#f2e1c4}
 
 </style>
 </head>
 <body>
-  <div class="shell">
-    <header class="masthead"><div class="brand"><span class="brand-mark">✦</span><div><small>DAWN ENGINE</small><h1>夜明けの機関</h1></div></div><button id="helpButton" class="quiet-button" type="button">物語・遊び方</button></header>
-    <main>
-      <section class="status panel" aria-label="周回の状況">
-        <div class="status-top"><span id="eraLabel"></span><strong id="daysText"></strong><span id="runText"></span></div>
-        <div class="mission"><span>避難船へ航路を送信する</span><strong id="lightProgressText"></strong></div>
-        <div class="progress-track"><div id="lightProgressBar" class="progress-fill"></div></div>
-        <div class="resources">
-          <div class="resource"><span>▦ 部品</span><strong id="scrapValue"></strong><small id="scrapRate"></small></div>
-          <div class="resource"><span>✳ 知識</span><strong id="ideaValue"></strong><small id="ideaRate"></small></div>
-          <div class="resource"><span>◆ 送信量</span><strong id="lightValue"></strong><small id="lightRate"></small></div>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand"><span class="crest" aria-hidden="true">✦</span><div><small>仮タイトル / UI 試作</small><strong>ギルド再建記</strong></div></div>
+      <button id="storyButton" class="icon-button" type="button" aria-label="物語を読む">物語</button>
+    </header>
+
+    <div class="preview-strip"><span>画面の見た目を確認する試作です</span><label>場面 <select id="sceneSelect" aria-label="表示する場面"><option value="day3">探索中</option><option value="raid">襲来後</option><option value="heaven">天界</option></select></label></div>
+
+    <section class="hud" id="hud" aria-label="現在の状況">
+      <div class="deadline-line"><span class="day-chip" id="dayLabel">DAY 03</span><span class="deadline-copy" id="deadlineLabel">借金返済まで <b>あと2日</b></span></div>
+      <div class="hud-stats">
+        <div class="hud-stat"><small>所持金</small><strong id="walletValue">78<span>G</span></strong></div>
+        <div class="hud-stat"><small>スタミナ</small><strong id="staminaValue">2<span>/ 5</span></strong></div>
+        <div class="hud-stat loot-stat"><small>探索中の戦利品</small><strong id="lootValue">24<span>G</span></strong></div>
+      </div>
+    </section>
+
+    <main class="content" id="content">
+      <section class="screen" id="adventureScreen" aria-labelledby="adventureTitle">
+        <div class="screen-head"><div><div class="eyebrow">ADVENTURE · AREA 01</div><h1 id="adventureTitle">はじまりの森 <span>奥行き 02</span></h1></div><span class="area-badge">探索中</span></div>
+        <div class="battle-stage" aria-label="主人公とペットが敵と向かい合う場面">
+          <div class="pixel-sun"></div><div class="pixel-cloud cloud-a"></div><div class="pixel-cloud cloud-b"></div><div class="pixel-hill hill-a"></div><div class="pixel-hill hill-b"></div>
+          <div class="battle-tip">次の敵を倒すと <b>18G</b> ／ 奥ほど危険</div>
+          <div class="sprites">
+            <div class="sprite-side"><div class="sprite-pair">
+              <svg class="sprite hero-sprite" viewBox="0 0 32 32" role="img" aria-label="主人公のドット絵" shape-rendering="crispEdges"><path fill="#503b55" d="M11 3h10v3H11zM8 6h16v4H8zM7 10h18v3H7z"/><path fill="#f2b282" d="M9 11h14v8H9z"/><path fill="#452c39" d="M11 14h3v2h-3zm8 0h3v2h-3z"/><path fill="#db6d5b" d="M10 19h12v3H10z"/><path fill="#436eaa" d="M8 22h16v6H8z"/><path fill="#263f73" d="M9 28h5v4H9zm9 0h5v4h-5z"/><path fill="#cdd3d1" d="M24 15h3v13h-3z"/><path fill="#f5d884" d="M26 12h3v5h-3z"/></svg>
+              <svg class="sprite pet-sprite" viewBox="0 0 32 32" role="img" aria-label="ペットのスライムのドット絵" shape-rendering="crispEdges"><path fill="#278caa" d="M11 9h10v3H11zM7 12h18v4H7zM5 16h22v10H5zM8 26h16v3H8z"/><path fill="#70d5ce" d="M9 16h14v3H9z"/><path fill="#173a57" d="M10 20h3v3h-3zm9 0h3v3h-3z"/><path fill="#ec8da2" d="M14 24h4v2h-4z"/></svg>
+            </div><span class="sprite-name">あなた ＋ ぷる</span><div class="hp-track"><span style="width:78%"></span></div><small>HP 28 / 36</small></div>
+            <span class="versus">VS</span>
+            <div class="sprite-side enemy-side"><svg class="sprite enemy-sprite" viewBox="0 0 32 32" role="img" aria-label="ゴブリンのドット絵" shape-rendering="crispEdges"><path fill="#4c914e" d="M9 7h14v3H9zM6 10h20v12H6zM9 22h14v4H9z"/><path fill="#2f703d" d="M3 12h5v6H3zm21 0h5v6h-5z"/><path fill="#f9eed6" d="M10 14h4v3h-4zm8 0h4v3h-4z"/><path fill="#393643" d="M12 14h2v2h-2zm6 0h2v2h-2z"/><path fill="#8b593f" d="M8 26h5v5H8zm11 0h5v5h-5z"/><path fill="#9b6752" d="M23 19h3v10h-3z"/></svg><span class="sprite-name">森のゴブリン</span><div class="hp-track enemy-hp"><span style="width:58%"></span></div><small>HP 13 / 22</small></div>
+          </div>
+          <div class="ground"></div>
         </div>
+        <div class="loot-note"><span class="bag-icon">▣</span><span><strong>戦利品 24G はまだ持ち歩き中</strong><small>帰還で確定。敗北すると一部を失います。</small></span></div>
+        <div class="action-row"><button class="action-button fight" data-demo="fight" type="button"><span>⚔</span> 戦う</button><button class="action-button gather" data-demo="gather" type="button"><span>✿</span> 採取</button><button class="action-button return" data-demo="return" type="button"><span>⌂</span> 帰還</button></div>
+        <details class="auto-settings"><summary><span>◈ オート戦闘</span><strong id="autoStatus">OFF</strong></summary><label><input id="autoEnabled" type="checkbox"> オートを使う</label><label><input type="checkbox"> ボス前で停止</label><label><input type="checkbox"> HPが30%以下なら帰還</label><p>ここでは設定の見た目だけ確認できます。</p></details>
+        <div class="next-hint"><span class="hint-star">✦</span><span><strong>あと42Gで初回の借金返済</strong><small>先に武器を買うか、今のまま稼ぐか。</small></span></div>
       </section>
-      <nav class="tabs" aria-label="ゲーム画面"><button class="tab active" data-tab="actions" type="button">行動</button><button class="tab" data-tab="tree" type="button">技術樹</button><button class="tab" data-tab="legacy" type="button">周回強化</button></nav>
-      <section class="panel game-panel" id="actionsPanel">
-        <div class="section-heading"><div><div class="section-kicker">TODAY'S PLAN</div><h2>今日の行動</h2></div><span id="apBadge" class="pill"></span></div>
-        <p class="panel-note">残りの行動をどう使うか。送信には部品と知識の両方が必要です。</p>
-        <div class="actions">
-          <button type="button" data-action="scrap" class="action-card"><span class="action-glyph">▦</span><span><strong>廃墟から部品を回収</strong><small id="scrapActionText"></small></span></button>
-          <button type="button" data-action="idea" class="action-card"><span class="action-glyph">✳</span><span><strong>記録を解析</strong><small id="ideaActionText"></small></span></button>
-          <button type="button" data-action="transmit" class="action-card transmit"><span class="action-glyph">◆</span><span><strong>試験送信する</strong><small id="transmitActionText"></small></span></button>
-          <button type="button" data-action="plan" class="action-card"><span class="action-glyph">◷</span><span><strong>明日の作業を計画</strong><small id="planActionText"></small></span></button>
-        </div>
-        <button id="nextDayButton" class="primary-button" type="button">翌日へ進む <span>→</span></button>
-        <div class="log-inline"><strong>記録</strong><div id="logList" aria-live="polite"></div></div>
+
+      <section class="screen" id="guildScreen" aria-labelledby="guildTitle" hidden>
+        <div class="screen-head"><div><div class="eyebrow">YOUR GUILD</div><h1 id="guildTitle">ギルドの帳簿</h1></div><span class="area-badge amber">返済優先</span></div>
+        <div class="debt-card" id="debtCard"><div class="debt-top"><span>最初の借金</span><strong>120G</strong></div><div class="debt-progress"><span></span></div><p>所持金 78G ／ あと <b>42G</b>。返済すれば、その日から5日後が魔王軍の襲来期限です。</p><button type="button" class="debt-button" data-demo="debt">返済する <small>120G 必要</small></button></div>
+        <div class="reward-card" id="rewardCard" hidden><div class="eyebrow">FIRST RAID CLEAR!</div><h2>襲来を退けた！</h2><p>救援に来た3人のうち、1人を今すぐ仲間にできます。選ばなかった候補も、あとで再登場します。</p><div class="reward-choices"><button type="button" data-demo="ally" class="ally-choice"><span>⚔</span><strong>リオ</strong><small>連撃が得意</small></button><button type="button" data-demo="ally" class="ally-choice"><span>✿</span><strong>ミナ</strong><small>素材を見抜く</small></button><button type="button" data-demo="ally" class="ally-choice"><span>◆</span><strong>ベル</strong><small>賞金を増やす</small></button></div></div>
+        <div class="eyebrow block-eyebrow">今日の投資先</div>
+        <div class="purchase-list"><button class="purchase-card" data-demo="weapon" type="button"><span class="purchase-icon sword">⚔</span><span><strong>見習いの剣 <i>コモン</i></strong><small>攻撃 +3 ／ 次の戦闘から効く</small></span><b>45G</b></button><button class="purchase-card" data-demo="skill" type="button"><span class="purchase-icon skill">✦</span><span><strong>一閃の心得 <i>コモン</i></strong><small>戦い方を変える最初の技</small></span><b>35G</b></button></div>
+        <div class="party-card"><div class="party-head"><strong>一緒に冒険する仲間</strong><span>1 / 4 人 ＋ ペット</span></div><div class="party-slots"><span>主人公</span><span class="pet-slot">ぷる</span><span class="empty-slot">＋</span><span class="empty-slot">＋</span><span class="empty-slot">＋</span></div><p id="partyNote">最初の襲来を退けると、3人の候補から仲間を選べます。</p></div>
       </section>
-      <section class="panel game-panel" id="treePanel" hidden>
-        <div class="section-heading"><div><div class="section-kicker">BLUEPRINTS</div><h2>技術樹</h2></div><span id="treeCount" class="pill"></span></div>
-        <p class="panel-note">列を選んで技術を取得。先へ進むほど新しい階層が現れます。</p>
-        <div id="branchTabs" class="branch-tabs" role="group" aria-label="技術の分野"></div>
-        <div id="treeRows" class="tree-rows"></div>
+
+      <section class="screen" id="skillScreen" aria-labelledby="skillTitle" hidden>
+        <div class="screen-head"><div><div class="eyebrow">SKILL TREE</div><h1 id="skillTitle">どこから伸ばす？</h1></div><span class="area-badge">全系統公開</span></div>
+        <p class="skill-lead">どの系統も最初から購入できます。奥の技には同じ系統の手前の技が必要です。</p>
+        <div id="skillCategories" class="skill-categories" role="group" aria-label="スキル系統"></div>
+        <div id="skillList" class="skill-list"></div>
+        <div class="skill-footer">表示中の価格と効果はUI確認用の仮値です。</div>
       </section>
-      <section class="panel game-panel" id="legacyPanel" hidden>
-        <div class="section-heading"><div><div class="section-kicker">NEW GAME+</div><h2>周回強化</h2></div><span class="pill">恒久</span></div>
-        <div class="shard-total"><span>記憶片</span><strong id="shardsValue"></strong><small>成功・失敗のどちらでも獲得</small></div>
-        <div id="legacyList" class="legacy-list"></div>
-        <button id="resetButton" class="reset-button" type="button">保存データを初期化</button>
+
+      <section class="screen" id="heavenScreen" aria-labelledby="heavenTitle" hidden>
+        <div class="screen-head"><div><div class="eyebrow">NEW GAME+</div><h1 id="heavenTitle">天界の休憩所</h1></div><span class="area-badge purple">敗北後の画面</span></div>
+        <div class="heaven-hero"><span class="heaven-spark">✦</span><strong>おかえり、ギルド長。</strong><p>財布は置いてきても、覚えたことまでは置いてこなかったね。</p></div>
+        <div class="memory-summary"><span>この周回の新規収入 <b>840G</b></span><span>早期達成ボーナス <b>+6</b></span><strong>今回の記憶 <em>90</em></strong></div>
+        <div class="eyebrow block-eyebrow">次の周回に持っていく力</div>
+        <div class="heaven-list"><button type="button" class="heaven-upgrade" data-demo="heaven"><span>✹</span><span><strong>朝の元気</strong><small>初期スタミナ +1</small></span><b>記憶 30</b></button><button type="button" class="heaven-upgrade" data-demo="heaven"><span>◈</span><span><strong>隠し金庫</strong><small>初期資金 +20G</small></span><b>記憶 25</b></button><button type="button" class="heaven-upgrade" data-demo="heaven"><span>✦</span><span><strong>昔取った杵柄</strong><small>主人公の基礎攻撃 +2</small></span><b>記憶 35</b></button></div>
+        <button type="button" class="replay-button" data-demo="replay">もう一度、ギルドを開く →</button>
       </section>
     </main>
-    <footer>夜明けの機関 · 自動保存 · v0.2</footer>
+
+    <nav class="bottom-nav" aria-label="メインメニュー"><button type="button" class="nav-item active" data-screen="adventure" aria-current="page"><span>⚔</span>冒険</button><button type="button" class="nav-item" data-screen="guild"><span>▤</span>ギルド</button><button type="button" class="nav-item" data-screen="skill"><span>✦</span>スキル</button><button type="button" class="nav-item" data-screen="heaven"><span>☼</span>天界</button></nav>
   </div>
-  <dialog id="storyDialog" class="modal"><div class="modal-inner"><div class="section-kicker">24 DAYS UNTIL CLOSURE</div><h2>通信塔を、もう一度。</h2><p>24日後、港の防潮門が閉じる。外海で待つ避難船に航路を知らせなければ、街の人々は取り残される。</p><p>廃墟から部品を集め、残された記録を解き、通信塔で試験送信を重ねよう。期限に間に合わなくても、設計の記憶は次の周回に残る。</p><button id="startButton" class="primary-button" type="button">計画を始める <span>→</span></button></div></dialog>
-  <dialog id="resultDialog" class="modal"><div class="modal-inner"><div id="resultKicker" class="section-kicker"></div><h2 id="resultTitle"></h2><p id="resultText"></p><div class="result-shards">獲得した記憶片 <strong id="resultShards"></strong></div><button id="newRunButton" class="primary-button" type="button">次の周回へ <span>→</span></button></div></dialog>
-  <dialog id="helpDialog" class="modal"><div class="modal-inner"><div class="section-kicker">THE STORY</div><h2>避難船に航路を送る</h2><p>24日後に閉じる港から人々を逃がすため、通信塔を再起動します。部品と知識を使って「試験送信」し、目標の送信量を満たしてください。</p><p>毎日2回行動できます。技術は資源の自動生産や送信の効率を高めます。期限終了後は記憶片を使って恒久強化を購入し、次の周回へ進めます。</p><button id="closeHelpButton" class="primary-button" type="button">戻る <span>✓</span></button></div></dialog>
+
+  <dialog id="storyDialog" class="dialog"><div class="dialog-body"><div class="eyebrow">PROLOGUE</div><h2>借金まみれのギルドへ<br>ようこそ。</h2><p>引き継いだギルドの金庫は空っぽ。机の上には借用書が一枚。そして、魔王軍が近づいているという知らせ。</p><p>それでも、相棒のペットは尻尾を振って待っていた。まずは5日後の返済を目指そう。失敗しても、冒険の記憶は次の挑戦へ持っていける。</p><button id="closeStoryButton" class="dialog-close" type="button">ギルドへ戻る →</button></div></dialog>
+  <dialog id="detailDialog" class="dialog"><div class="dialog-body"><div class="eyebrow" id="detailKicker"></div><h2 id="detailTitle"></h2><p id="detailText"></p><div class="detail-meta" id="detailMeta"></div><button id="closeDetailButton" class="dialog-close" type="button">ツリーへ戻る →</button></div></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script>
 (() => {
   'use strict';
-  const KEY = 'dawn-engine-save-v2';
-  const OLD_KEY = 'dawn-engine-save-v1';
-  const branches = [
-    {id:'scrap',label:'回収',names:['回収網','磁力選別','自走採掘機','地層読解','軌道回収船'],base:7,idea:6},
-    {id:'idea',label:'解析',names:['記録庫','解析塔','記憶結晶','予測機関','思考星図'],base:8,idea:7},
-    {id:'light',label:'送信',names:['小型送信機','集光鏡','共鳴炉','恒星導線','夜明け炉'],base:12,idea:9},
-    {id:'unity',label:'統合',names:['共同設計','連鎖機構','完全循環','統一理論','無限機関'],base:16,idea:13}
-  ];
-  const legacies = [
-    {id:'supply',name:'持ち込み資材',detail:l=>`初期部品 +${6*l}`,cost:l=>2+l*2},
-    {id:'memory',name:'継承知識',detail:l=>`初期知識 +${3*l}`,cost:l=>2+l*2},
-    {id:'engine',name:'基礎機関',detail:l=>`自動生産 +${18*l}%`,cost:l=>3+l*3},
-    {id:'hands',name:'熟練の手',detail:l=>`行動の効果 +${15*l}%`,cost:l=>3+l*3},
-    {id:'time',name:'予備時間',detail:l=>`期限 +${2*l}日`,cost:l=>4+l*4},
-    {id:'economy',name:'設計の知恵',detail:l=>`技術コスト ×${Math.round(100*Math.pow(.96,l))}%`,cost:l=>5+l*4}
-  ];
   const $ = id => document.getElementById(id);
-  const fmt = n => Number.isFinite(n) ? new Intl.NumberFormat('ja-JP',{notation:n>=100000?'compact':'standard',maximumFractionDigits:0}).format(Math.floor(n)) : '∞';
-  const fresh = (era=0,run=1,shards=0,legacy={},introSeen=false) => ({era,run,shards,legacy,introSeen,day:1,ap:2,planned:false,plannedBonus:0,scrap:12+6*(legacy.supply||0),idea:5+3*(legacy.memory||0),light:0,owned:[],logs:[{day:1,text:'港の閉鎖まで24日。通信塔の修復を始める。'}],ended:false,result:null});
-  function load(){
-    try { const saved=JSON.parse(localStorage.getItem(KEY)); if(saved&&Array.isArray(saved.owned)&&saved.legacy&&Array.isArray(saved.logs)) return saved; } catch {}
-    try { const old=JSON.parse(localStorage.getItem(OLD_KEY)); if(old&&old.legacy) return fresh(old.era||0,old.run||1,old.shards||0,old.legacy); } catch {}
-    return fresh();
+  const skillTrees = [
+    {id:'attack',name:'基礎攻撃',nodes:[
+      {name:'一閃の心得',icon:'⚔',rarity:'common',label:'コモン',price:35,effect:'通常攻撃の後に、一度だけ素早い追撃を行う。',prereq:'前提なし'},
+      {name:'追い風の刃',icon:'↠',rarity:'uncommon',label:'アンコモン',price:95,effect:'一閃の追撃が命中すると、次の行動の威力が増す。',prereq:'一閃の心得'},
+      {name:'剣の舞',icon:'✷',rarity:'epic',label:'エピック',price:360,effect:'追撃が連鎖する。最初の一閃も発動の土台として残る。',prereq:'追い風の刃'}]},
+    {id:'critical',name:'クリティカル',nodes:[
+      {name:'急所を読む',icon:'◇',rarity:'common',label:'コモン',price:40,effect:'クリティカル率が上がる。',prereq:'前提なし'},
+      {name:'会心の合図',icon:'✧',rarity:'rare',label:'レア',price:135,effect:'主人公の会心の後、ペットの次の攻撃が強くなる。',prereq:'急所を読む'},
+      {name:'幸運の連鎖',icon:'✦',rarity:'epic',label:'エピック',price:420,effect:'連続会心で討伐報酬が増える。',prereq:'会心の合図'}]},
+    {id:'bounty',name:'賞金',nodes:[
+      {name:'討伐帳',icon:'▤',rarity:'common',label:'コモン',price:30,effect:'敵の討伐ゴールドを少し増やす。',prereq:'前提なし'},
+      {name:'名指し手配',icon:'◎',rarity:'uncommon',label:'アンコモン',price:110,effect:'奥地の敵から得るゴールドを増やす。',prereq:'討伐帳'},
+      {name:'賞金首の噂',icon:'★',rarity:'rare',label:'レア',price:280,effect:'高額な賞金首が現れやすくなる。',prereq:'名指し手配'}]},
+    {id:'luck',name:'幸運・宝箱',nodes:[
+      {name:'よく光る目',icon:'✺',rarity:'common',label:'コモン',price:45,effect:'探索中に宝箱を見つけやすくなる。',prereq:'前提なし'},
+      {name:'二重底の箱',icon:'▣',rarity:'rare',label:'レア',price:175,effect:'宝箱から追加の戦利品を得ることがある。',prereq:'よく光る目'},
+      {name:'拾い物の王冠',icon:'♛',rarity:'legendary',label:'レジェンダリー',price:760,effect:'レアな戦利品を引いた周回の収益を大きく伸ばす。',prereq:'二重底の箱'}]},
+    {id:'survival',name:'生存',nodes:[
+      {name:'野営の知恵',icon:'♧',rarity:'common',label:'コモン',price:35,effect:'帰還時にHPを少し回復する。',prereq:'前提なし'},
+      {name:'踏みとどまる',icon:'❖',rarity:'uncommon',label:'アンコモン',price:125,effect:'HPが少ない時、一度だけ受けるダメージを減らす。',prereq:'野営の知恵'},
+      {name:'最後の一歩',icon:'✹',rarity:'epic',label:'エピック',price:390,effect:'危険な深度から無事に帰還した時、追加報酬を得る。',prereq:'踏みとどまる'}]},
+    {id:'companions',name:'仲間',nodes:[
+      {name:'連携指揮',icon:'♟',rarity:'common',label:'コモン',price:70,effect:'仲間と主人公の連携攻撃を強める。',prereq:'前提なし'},
+      {name:'出撃枠の拡張',icon:'♜',rarity:'rare',label:'レア',price:240,effect:'仲間の出撃枠を1つ増やす。',prereq:'連携指揮'},
+      {name:'控えの加護',icon:'✪',rarity:'legendary',label:'レジェンダリー',price:5000,effect:'控えの仲間のパッシブ効果を25%得る。高額だが進行条件はない。',prereq:'前提なし・別枝'}]},
+    {id:'pet',name:'ペット',nodes:[
+      {name:'おやつの約束',icon:'♥',rarity:'common',label:'コモン',price:30,effect:'ペットの攻撃力が上がる。採取で得る育成品でも成長する。',prereq:'前提なし'},
+      {name:'息ぴったり',icon:'◈',rarity:'uncommon',label:'アンコモン',price:120,effect:'主人公の追撃の後にペットが攻撃しやすくなる。',prereq:'おやつの約束'},
+      {name:'相棒の大仕事',icon:'✦',rarity:'rare',label:'レア',price:310,effect:'ペットがとどめを刺した時に追加報酬を得る。',prereq:'息ぴったり'}]},
+    {id:'fame',name:'ギルドの名声',nodes:[
+      {name:'噂の新顔',icon:'♢',rarity:'common',label:'コモン',price:55,effect:'獲得済みの通常実績に応じて討伐ゴールドが増える。',prereq:'前提なし'},
+      {name:'街の味方',icon:'❀',rarity:'uncommon',label:'アンコモン',price:160,effect:'通常実績が増えるほど主人公とペットが強くなる。',prereq:'噂の新顔'},
+      {name:'語り継がれるギルド',icon:'✺',rarity:'epic',label:'エピック',price:470,effect:'記録を重ねるほど、既に買った名声スキルの効果が伸びる。',prereq:'街の味方'}]}
+  ];
+  let category='attack';
+  let toastTimer;
+  const screens=['adventure','guild','skill','heaven'];
+  function showScreen(name){
+    if(name==='heaven'){$('sceneSelect').value='heaven';setHud('heaven');}
+    else if($('sceneSelect').value==='heaven'){$('sceneSelect').value='day3';setHud('day3');}
+    for(const screen of screens){$(`${screen}Screen`).hidden=screen!==name;const tab=document.querySelector(`[data-screen="${screen}"]`);tab.classList.toggle('active',screen===name);if(screen===name)tab.setAttribute('aria-current','page');else tab.removeAttribute('aria-current');}
+    $('content').scrollTop=0;
   }
-  let s=load();
-  let activeTab='actions';
-  let selectedBranch='scrap';
-  let visibleRows=5;
-  const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(s));}catch{}};
-  const level=id=>Math.max(0,Number(s.legacy[id]||0));
-  const maxDay=()=>24+2*level('time');
-  const target=()=>Math.ceil(300*Math.pow(1.5,s.era));
-  const key=(branch,tier)=>`${branch}-${tier}`;
-  const has=(branch,tier)=>s.owned.includes(key(branch,tier));
-  const count=branch=>s.owned.filter(k=>k.startsWith(`${branch}-`)).length;
-  const bonus=tier=>Math.ceil(2*Math.pow(1.25,tier-1));
-  function rates(){
-    let r={scrap:3,idea:2,light:0};
-    for(const owned of s.owned){const [branch,raw]=owned.split('-');const value=bonus(Number(raw));if(branch==='unity'){r.scrap+=value;r.idea+=value;r.light+=Math.max(1,Math.floor(value/2));}else if(r[branch]!==undefined)r[branch]+=value;}
-    const mult=1+.18*level('engine');
-    return {scrap:Math.ceil(r.scrap*mult),idea:Math.ceil(r.idea*mult),light:Math.ceil(r.light*mult)};
+  function setHud(scene){
+    $('hud').hidden=scene==='heaven';
+    if(scene==='heaven')return;
+    $('dayLabel').textContent=scene==='raid'?'DAY 10':'DAY 03';
+    $('deadlineLabel').innerHTML=scene==='raid'?'次の返済まで <b>あと5日</b>':'借金返済まで <b>あと2日</b>';
+    $('walletValue').innerHTML=scene==='raid'?'220<span>G</span>':'78<span>G</span>';
+    $('staminaValue').innerHTML=scene==='raid'?'3<span>/ 6</span>':'2<span>/ 5</span>';
+    $('lootValue').innerHTML=scene==='raid'?'0<span>G</span>':'24<span>G</span>';
+    $('debtCard').hidden=scene==='raid';
+    $('rewardCard').hidden=scene!=='raid';
+    $('partyNote').textContent=scene==='raid'?'候補を選ぶと、すぐ編成に加わります。':'最初の襲来を退けると、3人の候補から仲間を選べます。';
   }
-  const actionGain=id=>Math.ceil(({scrap:8,idea:7})[id]*(1+.15*level('hands')));
-  const transmitGain=()=>Math.ceil((11+5*count('light')+3*count('unity'))*(1+.15*level('hands')));
-  const transmitCost=()=>({scrap:5,idea:5});
-  function costs(branch,tier){const b=branches.find(x=>x.id===branch);const economy=Math.pow(.96,level('economy'));return {scrap:Math.ceil(b.base*Math.pow(1.5,tier-1)*economy),idea:Math.ceil(b.idea*Math.pow(1.58,tier-1)*economy)};}
-  function unlocked(branch,tier){if(tier===1)return branch!=='unity'||branches.slice(0,3).some(b=>has(b.id,1));if(!has(branch,tier-1))return false;return branch!=='unity'||branches.slice(0,3).some(b=>has(b.id,tier));}
-  function log(message){s.logs.unshift({day:s.day,text:message});s.logs=s.logs.slice(0,5);}
-  function checkEnd(){if(!s.ended&&s.light>=target())end(true);}
-  function end(won){s.ended=true;const earned=Math.max(1,Math.floor(s.light/target()*5))+(won?3:0);s.result={won,earned};s.shards+=earned;log(won?'避難船へ航路が届いた。次の航路が待っている。':'防潮門が閉じた。設計の記憶を次へ持ち帰る。');save();render();showResult();}
-  function showResult(){if(!s.result)return;$('resultKicker').textContent=s.result.won?'TRANSMISSION COMPLETE':'THE GATE CLOSES';$('resultTitle').textContent=s.result.won?'航路が届いた':'もう一度、やり直そう';$('resultText').textContent=s.result.won?`第${s.era+1}航路を確保。次の周回では、より遠くの避難船へ信号を届けます。`:`目標 ${fmt(target())} に対して送信量は ${fmt(s.light)}。記憶片で強化して再挑戦できます。`;$('resultShards').textContent=`+${fmt(s.result.earned)}`;if(!$('resultDialog').open)$('resultDialog').showModal();}
-  function spendAction(id){
-    if(s.ended||s.ap<=0)return;
-    if(id==='scrap'||id==='idea'){const gained=actionGain(id);s[id]+=gained;log(`${id==='scrap'?'部品':'知識'} +${fmt(gained)}。`);}
-    else if(id==='transmit'){const cost=transmitCost();if(s.scrap<cost.scrap||s.idea<cost.idea)return;s.scrap-=cost.scrap;s.idea-=cost.idea;s.light+=transmitGain();log(`試験送信。航路データ +${fmt(transmitGain())}。`);}
-    else if(id==='plan'){if(s.planned||s.idea<8)return;s.idea-=8;s.planned=true;s.plannedBonus=2;log('知識を使って明日の作業を増やした。');}
-    else return;
-    s.ap--;checkEnd();save();render();
+  function renderSkills(){
+    const categories=$('skillCategories');categories.replaceChildren();
+    for(const tree of skillTrees){const button=document.createElement('button');button.type='button';button.className=`category-tab${tree.id===category?' active':''}`;button.textContent=tree.name;button.setAttribute('aria-pressed',tree.id===category?'true':'false');button.addEventListener('click',()=>{category=tree.id;renderSkills();$('content').scrollTop=0;});categories.appendChild(button);}
+    const list=$('skillList');list.replaceChildren();
+    const tree=skillTrees.find(item=>item.id===category);
+    tree.nodes.forEach((node,index)=>{
+      const button=document.createElement('button');button.type='button';button.className=`skill-node ${node.rarity}${index>0&&node.prereq!=='前提なし・別枝'?' unavailable':''}`;
+      button.innerHTML=`<span class="node-icon">${node.icon}</span><span class="node-info"><strong>${node.name}<span class="rarity">${node.label}</span></strong><small>${node.effect}</small><em>${node.prereq}</em></span><span class="node-price">${node.price.toLocaleString('ja-JP')}G</span>`;
+      button.addEventListener('click',()=>showSkillDetail(tree.name,node));list.appendChild(button);
+    });
   }
-  function advance(){if(s.ended)return;const r=rates();s.scrap+=r.scrap;s.idea+=r.idea;s.light+=r.light;log(`装置が稼働。部品 +${fmt(r.scrap)}、知識 +${fmt(r.idea)}${r.light?`、送信量 +${fmt(r.light)}`:''}。`);checkEnd();if(!s.ended){if(s.day>=maxDay())end(false);else{s.day++;s.ap=2+s.plannedBonus;s.plannedBonus=0;s.planned=false;}}save();render();}
-  function buySkill(branch,tier){if(s.ended||has(branch,tier)||!unlocked(branch,tier))return;const c=costs(branch,tier);if(s.scrap<c.scrap||s.idea<c.idea)return;s.scrap-=c.scrap;s.idea-=c.idea;s.owned.push(key(branch,tier));const b=branches.find(x=>x.id===branch);log(`「${b.names[(tier-1)%b.names.length]}」を設置した。`);visibleRows=Math.max(visibleRows,tier+3);save();render();}
-  function buyLegacy(id){const item=legacies.find(x=>x.id===id);if(!item)return;const price=item.cost(level(id));if(s.shards<price)return;s.shards-=price;s.legacy[id]=level(id)+1;log(`恒久強化「${item.name}」を取得。`);save();render();}
-  function setTab(tab){activeTab=tab;for(const name of ['actions','tree','legacy']){$(`${name}Panel`).hidden=name!==tab;document.querySelector(`[data-tab="${name}"]`).classList.toggle('active',name===tab);}window.scrollTo(0,0);}
-  function renderTree(){
-    const tabs=$('branchTabs');tabs.replaceChildren();
-    for(const b of branches){const btn=document.createElement('button');btn.type='button';btn.textContent=b.label;btn.className=`branch-tab${selectedBranch===b.id?' active':''}`;btn.setAttribute('aria-pressed',selectedBranch===b.id?'true':'false');btn.addEventListener('click',()=>{selectedBranch=b.id;renderTree();});tabs.appendChild(btn);}
-    const branch=branches.find(x=>x.id===selectedBranch);
-    const deepest=count(selectedBranch);
-    const rows=$('treeRows');rows.replaceChildren();
-    for(let tier=1;tier<=Math.max(visibleRows,deepest+2);tier++){
-      const node=document.createElement('button');node.type='button';node.className='tree-card';
-      const owned=has(branch.id,tier),open=unlocked(branch.id,tier),cost=costs(branch.id,tier),afford=s.scrap>=cost.scrap&&s.idea>=cost.idea;
-      if(owned)node.classList.add('owned');else if(!open)node.classList.add('locked');
-      node.disabled=s.ended||owned||!open||!afford;
-      const name=branch.names[(tier-1)%branch.names.length]+(tier>5?` ${Math.floor((tier-1)/5)+1}`:'');
-      const effect=branch.id==='scrap'?`部品の自動回収 +${fmt(bonus(tier))}/日`:branch.id==='idea'?`知識の自動解析 +${fmt(bonus(tier))}/日`:branch.id==='light'?`送信量 +${fmt(bonus(tier))}/日、試験送信も強化`:`部品・知識・送信量をまとめて強化`;
-      node.innerHTML=`<span class="tree-tier">第${tier}階層</span><span class="tree-name">${name}</span><span class="tree-effect">${effect}</span><span class="tree-cost">${owned?'取得済み':open?`部品 ${fmt(cost.scrap)} · 知識 ${fmt(cost.idea)}`:'前の階層が必要'}</span>`;
-      node.addEventListener('click',()=>buySkill(branch.id,tier));rows.appendChild(node);
-    }
-    const more=document.createElement('button');more.type='button';more.className='more-button';more.textContent='さらに先の技術を見る ↓';more.addEventListener('click',()=>{visibleRows+=5;renderTree();});rows.appendChild(more);
-    $('treeCount').textContent=`${s.owned.length} 技術取得`;
-  }
-  function render(){
-    const r=rates(),t=target(),cost=transmitCost();
-    $('eraLabel').textContent=`第${s.era+1}航路`;
-    $('daysText').textContent=`残り ${Math.max(0,maxDay()-s.day)} 日`;
-    $('runText').textContent=`周回 ${s.run}`;
-    $('lightProgressText').textContent=`${fmt(s.light)} / ${fmt(t)}`;
-    $('lightProgressBar').style.width=`${Math.min(100,s.light/t*100)}%`;
-    for(const id of ['scrap','idea','light']){$(`${id}Value`).textContent=fmt(s[id]);$(`${id}Rate`).textContent=`+${fmt(r[id])}/日`;}
-    $('scrapActionText').textContent=`部品 +${fmt(actionGain('scrap'))}`;
-    $('ideaActionText').textContent=`知識 +${fmt(actionGain('idea'))}`;
-    $('transmitActionText').textContent=`部品 ${cost.scrap}・知識 ${cost.idea} → 送信量 +${fmt(transmitGain())}`;
-    $('planActionText').textContent=s.planned?'今日は計画済み':'知識 8 → 明日の行動 +2';
-    $('apBadge').textContent=`残り ${s.ap} 回`;
-    document.querySelectorAll('[data-action]').forEach(btn=>{const id=btn.dataset.action;btn.disabled=s.ended||s.ap<=0||(id==='transmit'&&(s.scrap<cost.scrap||s.idea<cost.idea))||(id==='plan'&&(s.planned||s.idea<8));});
-    $('nextDayButton').disabled=s.ended;
-    $('shardsValue').textContent=fmt(s.shards);
-    const legacy=$('legacyList');legacy.replaceChildren();for(const item of legacies){const l=level(item.id),price=item.cost(l),btn=document.createElement('button');btn.type='button';btn.className='legacy-item';btn.disabled=s.shards<price;btn.innerHTML=`<span><strong>${item.name} · Lv.${l}</strong><small>${item.detail(l+1)}</small></span><span class="legacy-price">✦ ${fmt(price)}</span>`;btn.addEventListener('click',()=>buyLegacy(item.id));legacy.appendChild(btn);}
-    const logs=$('logList');logs.replaceChildren();for(const entry of s.logs.slice(0,2)){const el=document.createElement('p');el.textContent=`DAY ${entry.day} · ${entry.text}`;logs.appendChild(el);}
-    renderTree();
-  }
-  document.querySelectorAll('[data-tab]').forEach(btn=>btn.addEventListener('click',()=>setTab(btn.dataset.tab)));
-  document.querySelectorAll('[data-action]').forEach(btn=>btn.addEventListener('click',()=>spendAction(btn.dataset.action)));
-  $('nextDayButton').addEventListener('click',advance);
-  $('newRunButton').addEventListener('click',()=>{const era=s.era+(s.result?.won?1:0);s=fresh(era,s.run+1,s.shards,s.legacy,true);visibleRows=5;$('resultDialog').close();setTab('actions');save();render();});
-  $('helpButton').addEventListener('click',()=>$('helpDialog').showModal());
-  $('closeHelpButton').addEventListener('click',()=>$('helpDialog').close());
-  $('startButton').addEventListener('click',()=>{s.introSeen=true;save();$('storyDialog').close();});
-  $('resetButton').addEventListener('click',()=>{if(confirm('すべての周回と恒久強化を削除しますか？')){s=fresh();visibleRows=5;save();setTab('actions');render();$('storyDialog').showModal();}});
-  setTab('actions');render();if(!s.introSeen)$('storyDialog').showModal();else if(s.ended)showResult();
+  function showSkillDetail(branch,node){$('detailKicker').textContent=`${branch} / ${node.label}`;$('detailTitle').textContent=node.name;$('detailText').textContent=node.effect;$('detailMeta').textContent=`価格 ${node.price.toLocaleString('ja-JP')}G · ${node.prereq} · UI試作のため購入はまだできません。`;$('detailDialog').showModal();}
+  function toast(message){const node=$('toast');node.textContent=message;node.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>node.classList.remove('show'),2800);}
+  document.querySelectorAll('[data-screen]').forEach(button=>button.addEventListener('click',()=>showScreen(button.dataset.screen)));
+  $('sceneSelect').addEventListener('change',event=>{const scene=event.target.value;setHud(scene);showScreen(scene==='heaven'?'heaven':scene==='raid'?'guild':'adventure');});
+  $('storyButton').addEventListener('click',()=>$('storyDialog').showModal());
+  $('closeStoryButton').addEventListener('click',()=>$('storyDialog').close());
+  $('closeDetailButton').addEventListener('click',()=>$('detailDialog').close());
+  $('autoEnabled').addEventListener('change',event=>{$('autoStatus').textContent=event.target.checked?'ON':'OFF';});
+  const messages={fight:'戦闘画面の操作は次の試作で動かします。',gather:'採取・ペット育成は次の試作で動かします。',return:'帰還すると戦利品が所持金に確定します。',debt:'現在の所持金では、まだ返済できません。',weapon:'武器の購入は次の試作で動かします。',skill:'スキル画面で効果と価格を確認できます。',heaven:'天界強化の購入は次の試作で動かします。',ally:'仲間の選択は次の試作で動かします。',replay:'再挑戦の処理は次の試作で動かします。'};
+  document.querySelectorAll('[data-demo]').forEach(button=>button.addEventListener('click',()=>{if(button.dataset.demo==='skill'){showScreen('skill');return;}toast(messages[button.dataset.demo]||'UI試作です。');}));
+  renderSkills();setHud('day3');showScreen('adventure');
 })();
 
 </script>
