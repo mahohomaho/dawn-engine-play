@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10172b">
+  <meta name="description" content="期限までに灯台を灯す、終わりのないスキルツリーを持つ周回型ゲーム。">
+  <title>夜明けの機関</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
+:root{font-family:'Outfit','Noto Sans JP',sans-serif;color:#e8edf8;background:#0d1425;font-synthesis:none}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% -10%,#253758 0,transparent 35%),#0d1425;min-height:100vh}button{font:inherit;cursor:pointer}button:disabled{cursor:not-allowed;opacity:.46}.shell{max-width:1420px;padding:0 28px;margin:auto}.masthead{height:94px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff12}.brand{display:flex;align-items:center;gap:14px}.brand-mark{font-size:42px;color:#fbc97a;line-height:1}.brand small{display:block;color:#8395b5;font-size:10px;font-weight:700;letter-spacing:2.5px}.brand h1{font-size:22px;margin:1px 0 0;letter-spacing:.12em}.quiet-button{color:#bfcce2;background:#ffffff0a;border:1px solid #ffffff24;border-radius:100px;padding:10px 17px}.quiet-button:hover,.reset-button:hover{background:#ffffff18}.panel{background:#151f34;border:1px solid #ffffff15;border-radius:22px;box-shadow:0 18px 50px #00000018}.hero{min-height:335px;margin:26px 0;display:grid;grid-template-columns:1.45fr 1fr;overflow:hidden;background:linear-gradient(120deg,#1b2944,#142039 60%,#172940)}.hero-copy{padding:37px 44px 30px;position:relative;z-index:1}.eyebrow,.section-kicker{color:#f3b96e;font-size:11px;font-weight:800;letter-spacing:2px}.live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#f9be70;box-shadow:0 0 14px #f9be70;margin-right:8px}.hero h2{font-size:clamp(32px,4vw,56px);letter-spacing:.04em;line-height:1.3;margin:16px 0}.hero h2 em{font-style:normal;color:#f5c179}.hero p{max-width:610px;color:#adbed7;font-size:13px;line-height:1.9;margin:0 0 28px}.progress-head,.hero-foot{display:flex;justify-content:space-between;gap:12px;color:#a2b4d2;font-size:12px}.progress-head strong{color:#f6c779;font-size:16px}.progress-track{height:10px;border-radius:20px;background:#090f1d;overflow:hidden;margin:11px 0}.progress-fill{height:100%;background:linear-gradient(90deg,#e19a57,#ffe6a1);border-radius:20px;box-shadow:0 0 16px #f8c06c;transition:width .3s}.hero-foot{margin-top:16px}.beacon-wrap{position:relative;min-height:300px;background:radial-gradient(circle at 50% 55%,#f3a85a38,transparent 50%)}.halo{position:absolute;border:1px solid #efb86a22;border-radius:50%;left:50%;top:48%;transform:translate(-50%,-50%)}.halo-outer{width:390px;height:390px}.halo-inner{width:270px;height:270px}.beacon{position:absolute;left:50%;bottom:45px;transform:translateX(-50%);width:140px;height:190px;filter:drop-shadow(0 0 22px #eca55044)}.beacon-top{position:absolute;top:13px;left:47px;width:46px;height:24px;background:#d9ad78;clip-path:polygon(50% 0,100% 100%,0 100%)}.beacon-light{position:absolute;top:36px;left:45px;width:50px;height:44px;border:7px solid #d7ac80;background:#fff3bc;box-shadow:0 0 16px #fff3bc,0 0 70px 25px #ffbf5f88}.beacon-body{position:absolute;top:80px;left:33px;width:74px;height:98px;background:linear-gradient(90deg,#3b465c,#718091 50%,#2f3c52);clip-path:polygon(18% 0,82% 0,100% 100%,0 100%)}.beacon-base{position:absolute;bottom:0;left:20px;width:100px;height:18px;background:#8393a1}.horizon{position:absolute;bottom:35px;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#e0af6a78,transparent)}.dashboard{display:grid;grid-template-columns:minmax(0,1fr) 322px;gap:20px}.main-column,.side-column{display:flex;flex-direction:column;gap:20px}.resource-panel,.action-panel,.tree-panel,.legacy-panel,.log-panel{padding:26px}.section-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:23px}.section-heading h2,.log-panel h2{font-size:20px;margin:4px 0 0;letter-spacing:.05em}.section-note,.pill{font-size:11px;color:#a9bad3}.pill{padding:7px 10px;background:#263550;border-radius:30px}.resources{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.resource{display:flex;align-items:center;gap:13px;background:#10192b;border:1px solid #ffffff0f;border-radius:15px;padding:16px}.resource-icon{height:44px;width:44px;flex:none;border-radius:12px;display:grid;place-items:center;font-size:22px}.resource-icon.scrap{background:#4b79992e;color:#9ed1ed}.resource-icon.idea{background:#a789ee24;color:#c1aaff}.resource-icon.light{background:#f3b96824;color:#f6c479}.resource small,.resource span{display:block;color:#8fa2c0;font-size:11px}.resource strong{display:block;font-size:27px;line-height:1.2;margin:2px 0}.resource span{color:#89bcae}.actions{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}.action-card{display:flex;align-items:flex-start;flex-direction:column;gap:7px;text-align:left;color:#e7edf6;background:#202e48;border:1px solid #ffffff1e;border-radius:14px;padding:15px;min-height:126px;transition:transform .15s,border-color .15s,background .15s}.action-card:hover:not(:disabled){transform:translateY(-2px);border-color:#f1c07899;background:#283956}.action-glyph{color:#f6c87b;font-size:25px}.action-card strong{font-size:13px}.action-card small{color:#a7bad6;font-size:11px}.primary-button{display:flex;justify-content:space-between;align-items:center;width:100%;background:#f2bb72;color:#172033;border:0;border-radius:12px;padding:14px 18px;font-weight:800;box-shadow:0 5px 18px #df995537}.primary-button:hover:not(:disabled){background:#ffd194}.primary-button span{font-size:20px}.hint{color:#8295b3;font-size:11px;line-height:1.7;margin:13px 0 0}.tree-intro{color:#9cafc9;font-size:12px;line-height:1.8;margin:-6px 0 21px}.tree-head,.tree-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.tree-head{color:#9baecc;text-align:center;font-size:11px;font-weight:700;margin-bottom:9px}.tree-rows{max-height:650px;overflow-y:auto;padding:3px 4px 4px 0;scrollbar-color:#41516a transparent}.tree-row{position:relative;margin-bottom:11px}.tree-card{position:relative;min-height:143px;color:#e7eef8;background:#1c2a43;border:1px solid #ffffff20;border-radius:14px;padding:13px;text-align:left;display:flex;flex-direction:column;align-items:flex-start;gap:5px}.tree-card:hover:not(:disabled){border-color:#f0bd75;background:#253652}.tree-card.owned{background:#223c44;border-color:#78c3ae76}.tree-card.locked{opacity:.55}.tree-tier{font-size:10px;color:#8fa5c4;letter-spacing:1px}.tree-name{font-size:13px;font-weight:800}.tree-effect{font-size:11px;color:#b1c2d6;line-height:1.45}.tree-cost{margin-top:auto;color:#f2c584;font-size:11px}.tree-card.owned .tree-cost{color:#93d8bb}.shard-total{background:linear-gradient(130deg,#574074,#282949);border:1px solid #c29af240;border-radius:16px;padding:18px;margin-bottom:17px}.shard-total span,.shard-total small{display:block;color:#c9b6e5;font-size:11px}.shard-total strong{display:block;font-size:37px;color:#f0d9ff}.legacy-list{display:flex;flex-direction:column;gap:9px}.legacy-item{width:100%;display:flex;align-items:center;justify-content:space-between;text-align:left;color:#e8e5f4;background:#202943;border:1px solid #ffffff1b;border-radius:12px;padding:11px}.legacy-item:hover:not(:disabled){border-color:#bd9aec}.legacy-item strong,.legacy-item small{display:block}.legacy-item strong{font-size:12px}.legacy-item small{font-size:10px;color:#a2afc8;margin-top:3px}.legacy-price{color:#d8bbf4;font-size:11px;white-space:nowrap;margin-left:8px}.log-panel h2{margin-bottom:18px}.log-list{display:flex;flex-direction:column;gap:0}.log-entry{border-top:1px solid #ffffff12;padding:11px 0;color:#a9b8ce;font-size:11px;line-height:1.6}.log-entry:first-child{border-top:0}.log-entry span{color:#ecc084;margin-right:7px}.reset-button{align-self:center;background:transparent;border:0;color:#7083a1;font-size:11px;padding:12px}footer{text-align:center;color:#627490;font-size:11px;padding:36px 0}.modal{border:1px solid #d9ad7459;border-radius:20px;background:#18243b;color:#eaf0fa;padding:0;width:min(450px,calc(100% - 28px));box-shadow:0 25px 90px #0008}.modal::backdrop{background:#080d19c9}.modal-inner{padding:31px}.modal h2{font-size:27px;margin:9px 0 14px}.modal p{color:#b5c4da;font-size:13px;line-height:1.9}.result-shards{display:flex;justify-content:space-between;align-items:center;background:#574074;border-radius:12px;padding:14px;margin:22px 0;color:#ddcbeb;font-size:12px}.result-shards strong{font-size:25px;color:#f3d8ff}@media(max-width:950px){.dashboard{grid-template-columns:1fr}.side-column{display:grid;grid-template-columns:1fr 1fr;align-items:start}.reset-button{grid-column:1/-1}}@media(max-width:650px){.shell{padding:0 14px}.masthead{height:72px}.brand h1{font-size:17px}.brand small{font-size:8px}.brand-mark{font-size:33px}.hero{grid-template-columns:1fr;margin:15px 0}.hero-copy{padding:25px 22px}.hero h2{font-size:34px}.hero p{font-size:12px}.beacon-wrap{min-height:120px;overflow:hidden}.beacon{bottom:-80px}.halo{top:88%}.horizon{bottom:0}.dashboard,.main-column,.side-column{display:flex;flex-direction:column;gap:14px}.resource-panel,.action-panel,.tree-panel,.legacy-panel,.log-panel{padding:19px}.resources{gap:5px}.resource{padding:10px 7px;gap:6px;flex-direction:column;align-items:flex-start}.resource-icon{height:29px;width:29px;font-size:16px}.resource strong{font-size:20px}.resource span{font-size:9px}.actions{gap:6px}.action-card{min-height:114px;padding:10px}.action-card strong{font-size:11px}.action-card small{font-size:10px}.tree-head,.tree-row{gap:5px}.tree-card{min-height:150px;padding:8px 6px}.tree-name{font-size:11px}.tree-effect,.tree-cost{font-size:9px}.tree-tier{font-size:8px}.tree-head{font-size:10px}.side-column{display:flex}}
+
+</style>
+</head>
+<body>
+  <div class="shell">
+    <header class="masthead">
+      <div class="brand"><span class="brand-mark">✦</span><div><small>LOOP ENGINE / 01</small><h1>夜明けの機関</h1></div></div>
+      <button id="helpButton" class="quiet-button" type="button">遊び方</button>
+    </header>
+
+    <main>
+      <section class="hero panel">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="live-dot"></span> 灯台再起動計画 <span id="eraLabel"></span></div>
+          <h2>夜が明ける前に、<br><em>光を届けよう。</em></h2>
+          <p>24日から始まる短い期限。毎日の行動と技術の取得順を選び、必要な光を蓄えてください。期限に届かなくても、次の周回は少し強く始まります。</p>
+          <div class="progress-head"><span>目標まで</span><strong id="lightProgressText"></strong></div>
+          <div class="progress-track"><div id="lightProgressBar" class="progress-fill"></div></div>
+          <div class="hero-foot"><span id="daysText"></span><span id="runText"></span></div>
+        </div>
+        <div class="beacon-wrap" aria-hidden="true"><div class="halo halo-outer"></div><div class="halo halo-inner"></div><div class="beacon"><div class="beacon-top"></div><div class="beacon-light"></div><div class="beacon-body"></div><div class="beacon-base"></div></div><div class="horizon"></div></div>
+      </section>
+
+      <div class="dashboard">
+        <div class="main-column">
+          <section class="panel resource-panel" aria-labelledby="resourcesTitle">
+            <div class="section-heading"><div><div class="section-kicker">01 / RESOURCES</div><h2 id="resourcesTitle">手持ちの資源</h2></div><span id="apBadge" class="pill"></span></div>
+            <div class="resources">
+              <div class="resource"><div class="resource-icon scrap">▦</div><div><small>部品</small><strong id="scrapValue"></strong><span id="scrapRate"></span></div></div>
+              <div class="resource"><div class="resource-icon idea">✳</div><div><small>知識</small><strong id="ideaValue"></strong><span id="ideaRate"></span></div></div>
+              <div class="resource"><div class="resource-icon light">◆</div><div><small>光</small><strong id="lightValue"></strong><span id="lightRate"></span></div></div>
+            </div>
+          </section>
+
+          <section class="panel action-panel" aria-labelledby="actionsTitle">
+            <div class="section-heading"><div><div class="section-kicker">02 / DAILY ACTIONS</div><h2 id="actionsTitle">今日の指示</h2></div><span class="section-note">1日に2回</span></div>
+            <div class="actions">
+              <button type="button" data-action="scrap" class="action-card"><span class="action-glyph">▦</span><strong>廃墟を探す</strong><small id="scrapActionText"></small></button>
+              <button type="button" data-action="idea" class="action-card"><span class="action-glyph">✳</span><strong>古文書を解く</strong><small id="ideaActionText"></small></button>
+              <button type="button" data-action="light" class="action-card"><span class="action-glyph">◆</span><strong>炉を焚く</strong><small id="lightActionText"></small></button>
+            </div>
+            <button id="nextDayButton" class="primary-button" type="button">1日進める <span>→</span></button>
+            <p class="hint">日を進めると装置が自動生産します。未使用の行動は翌日に持ち越せません。</p>
+          </section>
+
+          <section class="panel tree-panel" aria-labelledby="treeTitle">
+            <div class="section-heading"><div><div class="section-kicker">03 / INFINITE BLUEPRINT</div><h2 id="treeTitle">終わりのない技術樹</h2></div><span id="treeCount" class="pill"></span></div>
+            <p class="tree-intro">同じ列を下へ伸ばすほど専門化。並行して取得すれば、すべての技術を持つ機関も作れます。下へ進むほど新しい階層が現れます。</p>
+            <div class="tree-head"><span>採集</span><span>研究</span><span>発電</span><span>統合</span></div>
+            <div id="treeRows" class="tree-rows"></div>
+          </section>
+        </div>
+
+        <aside class="side-column">
+          <section class="panel legacy-panel" aria-labelledby="legacyTitle">
+            <div class="section-heading"><div><div class="section-kicker">04 / NEW GAME+</div><h2 id="legacyTitle">周回の遺産</h2></div></div>
+            <div class="shard-total"><span>記憶片</span><strong id="shardsValue"></strong><small>期限終了時に獲得</small></div>
+            <div id="legacyList" class="legacy-list"></div>
+            <p class="hint">恒久強化は周回をまたいで残り、購入回数に上限はありません。</p>
+          </section>
+          <section class="panel log-panel"><div class="section-kicker">TRANSMISSION LOG</div><h2>航海日誌</h2><div id="logList" class="log-list" aria-live="polite"></div></section>
+          <button id="resetButton" class="reset-button" type="button">保存データを初期化</button>
+        </aside>
+      </div>
+    </main>
+    <footer>夜明けの機関 · オートセーブ対応 · v0.1</footer>
+  </div>
+
+  <dialog id="resultDialog" class="modal"><div class="modal-inner"><div id="resultKicker" class="section-kicker"></div><h2 id="resultTitle"></h2><p id="resultText"></p><div class="result-shards">獲得する記憶片 <strong id="resultShards"></strong></div><button id="newRunButton" class="primary-button" type="button">次の周回へ <span>→</span></button></div></dialog>
+  <dialog id="helpDialog" class="modal"><div class="modal-inner"><div class="section-kicker">HOW TO PLAY</div><h2>遊び方</h2><p>毎日2回の行動で資源を集め、技術を購入します。「1日進める」で自動生産が入り、期限までに目標の光を集めると成功です。</p><p>技術は同じ列の直前の階層を取ると次が解放されます。「統合」は同じ階層のほかの技術も1つ必要です。技術樹は無限に続きます。</p><p>成功でも失敗でも記憶片が手に入ります。恒久強化を買い、次の周回へ進んでください。成功すると次の時代へ進み、目標も上がります。進行はこのブラウザに自動保存されます。</p><button id="closeHelpButton" class="primary-button" type="button">わかった <span>✓</span></button></div></dialog>
+  <script>
+(() => {
+  'use strict';
+  const KEY = 'dawn-engine-save-v1';
+  const branches = [
+    {id:'scrap', label:'採集', names:['回収網','磁力選別','自走採掘機','地層読解','軌道回収船'], description:'部品の自動生産', base:9, idea:3},
+    {id:'idea', label:'研究', names:['記録庫','解析塔','記憶結晶','予測機関','思考星図'], description:'知識の自動生産', base:10, idea:4},
+    {id:'light', label:'発電', names:['小型炉','集光鏡','共鳴炉','恒星導線','夜明け炉'], description:'光の自動生産', base:12, idea:5},
+    {id:'unity', label:'統合', names:['共同設計','連鎖機構','完全循環','統一理論','無限機関'], description:'全資源の自動生産', base:16, idea:7}
+  ];
+  const legacies = [
+    {id:'supply', name:'持ち込み資材', detail:l=>`次の周回の初期部品 +${6*l}`, cost:l=>2+l*2},
+    {id:'memory', name:'継承知識', detail:l=>`次の周回の初期知識 +${3*l}`, cost:l=>2+l*2},
+    {id:'engine', name:'基礎機関', detail:l=>`毎日の自動生産 +${Math.round(l*18)}%`, cost:l=>3+l*3},
+    {id:'hands', name:'熟練の手', detail:l=>`行動の獲得量 +${Math.round(l*15)}%`, cost:l=>3+l*3},
+    {id:'time', name:'予備時間', detail:l=>`期限 +${l*2}日`, cost:l=>4+l*4},
+    {id:'economy', name:'設計の知恵', detail:l=>`技術コスト ×${(Math.pow(.96,l)*100).toFixed(0)}%`, cost:l=>5+l*4}
+  ];
+  const $ = id => document.getElementById(id);
+  const fmt = n => Number.isFinite(n) ? new Intl.NumberFormat('ja-JP',{notation:n>=100000?'compact':'standard',maximumFractionDigits:0}).format(Math.floor(n)) : '∞';
+  const fresh = (era=0, run=1, shards=0, legacy={}) => ({era,run,shards,legacy,day:1,ap:2,scrap:12+6*(legacy.supply||0),idea:4+3*(legacy.memory||0),light:0,owned:[],logs:[{day:1,text:'新しい設計図を広げた。夜明けまでの準備を始めよう。'}],ended:false,result:null});
+  function load(){try {const s=JSON.parse(localStorage.getItem(KEY)); if(s&&typeof s==='object'&&Array.isArray(s.owned)&&s.legacy&&Array.isArray(s.logs)) return s;}catch{} return fresh();}
+  let s=load();
+  let visibleRows=6;
+  const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(s));}catch{}};
+  const level=id=>Math.max(0,Number(s.legacy[id]||0));
+  const maxDay=()=>24+2*level('time');
+  const target=()=>Math.ceil(300*Math.pow(1.7,s.era));
+  const skillKey=(branch,tier)=>`${branch}-${tier}`;
+  const has=(branch,tier)=>s.owned.includes(skillKey(branch,tier));
+  const bonus=tier=>Math.ceil(2*Math.pow(1.28,tier-1));
+  function rates(){
+    let r={scrap:3,idea:1,light:2};
+    for(const key of s.owned){const [branch,raw]=key.split('-');const value=bonus(Number(raw));if(branch==='unity'){r.scrap+=value;r.idea+=value;r.light+=value;}else if(r[branch]!==undefined)r[branch]+=value;}
+    const mult=1+.18*level('engine');
+    return {scrap:Math.ceil(r.scrap*mult),idea:Math.ceil(r.idea*mult),light:Math.ceil(r.light*mult)};
+  }
+  const actionGain=id=>Math.ceil(({scrap:7,idea:4,light:5})[id]*(1+.15*level('hands')));
+  const costs=(branch,tier)=>{const b=branches.find(x=>x.id===branch);const scale=Math.pow(1.46,tier-1)*Math.pow(.96,level('economy'));return {scrap:Math.max(1,Math.ceil(b.base*scale)),idea:Math.max(1,Math.ceil(b.idea*scale))};};
+  function unlocked(branch,tier){if(tier===1)return branch!=='unity'||branches.slice(0,3).some(b=>has(b.id,1));if(!has(branch,tier-1))return false;return branch!=='unity'||branches.slice(0,3).some(b=>has(b.id,tier));}
+  function log(text){s.logs.unshift({day:s.day,text});s.logs=s.logs.slice(0,6);}
+  function checkEnd(){if(!s.ended&&s.light>=target())end(true);}
+  function end(won){s.ended=true;const earned=Math.max(1,Math.floor(s.light/target()*4))+ (won?3:0);s.result={won,earned};s.shards+=earned;log(won?'灯台が夜空を照らした。次の時代が待っている。':'期限が来た。集めた記憶を次の周回へ持ち帰る。');save();render();showResult();}
+  function showResult(){if(!s.result)return;$('resultKicker').textContent=s.result.won?'MISSION COMPLETE':'THE NIGHT RETURNS';$('resultTitle').textContent=s.result.won?'夜明けを取り戻した':'また夜が訪れた';$('resultText').textContent=s.result.won?`第${s.era+1}時代を達成。次の時代はより多くの光が必要です。記憶片で恒久強化を選び、さらに深い技術樹を探しましょう。`:`目標 ${fmt(target())} に対して ${fmt(s.light)} の光を蓄えました。記憶片で恒久強化を選び、もう一度挑戦しましょう。`;$('resultShards').textContent=`+${fmt(s.result.earned)}`;$('resultDialog').showModal();}
+  function spendAction(id){if(s.ended||s.ap<=0)return;s[id]+=actionGain(id);s.ap--;log(`${({scrap:'廃墟から部品',idea:'古文書から知識',light:'炉から光'})[id]}を ${fmt(actionGain(id))} 得た。`);checkEnd();save();render();}
+  function advance(){if(s.ended)return;const r=rates();s.scrap+=r.scrap;s.idea+=r.idea;s.light+=r.light;log(`装置が稼働。部品 +${fmt(r.scrap)}、知識 +${fmt(r.idea)}、光 +${fmt(r.light)}。`);checkEnd();if(!s.ended){if(s.day>=maxDay())end(false);else{s.day++;s.ap=2;}}save();render();}
+  function buySkill(branch,tier){if(s.ended||has(branch,tier)||!unlocked(branch,tier))return;const c=costs(branch,tier);if(s.scrap<c.scrap||s.idea<c.idea)return;s.scrap-=c.scrap;s.idea-=c.idea;s.owned.push(skillKey(branch,tier));const b=branches.find(x=>x.id===branch);log(`第${tier}層の「${b.names[(tier-1)%b.names.length]}」を建設。`);visibleRows=Math.max(visibleRows,tier+3);save();render();}
+  function buyLegacy(id){const item=legacies.find(x=>x.id===id);if(!item)return;const price=item.cost(level(id));if(s.shards<price)return;s.shards-=price;s.legacy[id]=level(id)+1;log(`恒久強化「${item.name}」を取得。`);save();render();}
+  function renderTree(){
+    const deepest=s.owned.reduce((m,k)=>Math.max(m,Number(k.split('-')[1])||0),0);
+    const count=Math.max(visibleRows,deepest+3);
+    const list=$('treeRows');list.replaceChildren();
+    for(let tier=1;tier<=count;tier++){
+      const row=document.createElement('div');row.className='tree-row';
+      for(const b of branches){
+        const node=document.createElement('button');node.type='button';node.className='tree-card';
+        const owned=has(b.id,tier),open=unlocked(b.id,tier),cost=costs(b.id,tier),afford=s.scrap>=cost.scrap&&s.idea>=cost.idea;
+        if(owned)node.classList.add('owned');else if(!open)node.classList.add('locked');
+        node.disabled=s.ended||owned||!open||!afford;
+        const name=b.names[(tier-1)%b.names.length]+(tier>5?` ${Math.floor((tier-1)/5)+1}`:'');
+        node.innerHTML=`<span class="tree-tier">TIER ${String(tier).padStart(2,'0')}</span><span class="tree-name">${name}</span><span class="tree-effect">${b.description}<br>+${fmt(bonus(tier))}/日</span><span class="tree-cost">${owned?'取得済み':open?`▦ ${fmt(cost.scrap)} · ✳ ${fmt(cost.idea)}`:'🔒 前の階層'}</span>`;
+        node.title=owned?'取得済み':!open?'直前の階層が必要です':`部品 ${fmt(cost.scrap)}、知識 ${fmt(cost.idea)}`;
+        node.addEventListener('click',()=>buySkill(b.id,tier));row.appendChild(node);
+      }
+      list.appendChild(row);
+    }
+    const more=document.createElement('button');more.type='button';more.className='quiet-button';more.style.width='100%';more.textContent='さらに下の階層を見る ↓';more.addEventListener('click',()=>{visibleRows+=6;renderTree();});list.appendChild(more);
+    $('treeCount').textContent=`${s.owned.length} 技術を取得`;
+  }
+  function render(){
+    const r=rates(),t=target();
+    $('eraLabel').textContent=`第${s.era+1}時代`;
+    $('lightProgressText').textContent=`${fmt(s.light)} / ${fmt(t)}`;
+    $('lightProgressBar').style.width=`${Math.min(100,s.light/t*100)}%`;
+    $('daysText').textContent=`残り ${Math.max(0,maxDay()-s.day)} 日 · ${s.day} / ${maxDay()} 日目`;
+    $('runText').textContent=`周回 ${s.run}`;
+    for(const id of ['scrap','idea','light']){$(`${id}Value`).textContent=fmt(s[id]);$(`${id}Rate`).textContent=`+${fmt(r[id])} / 日`;$(`${id}ActionText`).textContent=`+${fmt(actionGain(id))} ${({scrap:'部品',idea:'知識',light:'光'})[id]}`;}
+    $('apBadge').textContent=`残り行動 ${s.ap} / 2`;
+    document.querySelectorAll('[data-action]').forEach(btn=>btn.disabled=s.ended||s.ap<=0);
+    $('nextDayButton').disabled=s.ended;
+    $('shardsValue').textContent=fmt(s.shards);
+    const legacy=$('legacyList');legacy.replaceChildren();for(const item of legacies){const l=level(item.id),price=item.cost(l),btn=document.createElement('button');btn.type='button';btn.className='legacy-item';btn.disabled=s.shards<price;btn.innerHTML=`<span><strong>${item.name} · Lv.${l}</strong><small>${item.detail(l+1)}</small></span><span class="legacy-price">✦ ${fmt(price)}</span>`;btn.addEventListener('click',()=>buyLegacy(item.id));legacy.appendChild(btn);}
+    const logs=$('logList');logs.replaceChildren();for(const entry of s.logs){const el=document.createElement('div');el.className='log-entry';const date=document.createElement('span');date.textContent=`DAY ${entry.day}`;el.append(date,document.createTextNode(entry.text));logs.appendChild(el);}
+    renderTree();
+  }
+  document.querySelectorAll('[data-action]').forEach(btn=>btn.addEventListener('click',()=>spendAction(btn.dataset.action)));
+  $('nextDayButton').addEventListener('click',advance);
+  $('newRunButton').addEventListener('click',()=>{const era=s.era+(s.result?.won?1:0),run=s.run+1,shards=s.shards,legacy=s.legacy;s=fresh(era,run,shards,legacy);visibleRows=6;$('resultDialog').close();save();render();});
+  $('helpButton').addEventListener('click',()=>$('helpDialog').showModal());
+  $('closeHelpButton').addEventListener('click',()=>$('helpDialog').close());
+  $('resetButton').addEventListener('click',()=>{if(confirm('すべての周回と恒久強化を削除しますか？')){s=fresh();visibleRows=6;save();render();}});
+  render();if(s.ended)showResult();
+})();
+
+</script>
+</body>
+</html>
+
