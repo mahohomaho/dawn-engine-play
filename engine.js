@@ -143,7 +143,7 @@
     hireAlly(id){const r=this.state.run;if(!r.raidCount||!D.allies[id]||r.alliesOwned.includes(id))return this.fail('募集できません');if(!this.spendGold(150,'hire'))return this.fail('150G必要です');r.alliesOwned.push(id);if(r.activeAllies.length<3+(this.runEffects().allySlots||0))r.activeAllies.push(id);return this.event('ally',`${D.allies[id].name}を雇った`);}
     setAlly(id,active){const r=this.state.run;if(!r.alliesOwned.includes(id))return this.fail('仲間がいません');r.activeAllies=r.activeAllies.filter(x=>x!==id);if(active){if(r.activeAllies.length>=3+(this.runEffects().allySlots||0))return this.fail('出撃枠がいっぱいです');r.activeAllies.push(id);}return this.event('ally','編成を変更した');}
     exportSave(){return JSON.stringify(this.state);}
-    importSave(json){let state;try{state=JSON.parse(json);}catch{return this.fail('セーブデータを読めません');}if(state.schemaVersion!==C.schemaVersion||!state.meta||!state.run)return this.fail('互換性のないセーブです');this.state=state;this.migrateCampaign();this.snapshot();this.listeners.forEach(fn=>fn(this.state,this.event('save','セーブを読み込んだ')));return this.result();}
+    importSave(json){let state;try{state=JSON.parse(json);}catch{return this.fail('セーブデータを読めません');}if(state.schemaVersion!==C.schemaVersion||!state.meta||!state.run)return this.fail('互換性のないセーブです');this.state=state;this.migrateCampaign();this.ensureWorldMap();const result=this.event('save','セーブを読み込んだ');this.snapshot();this.listeners.forEach(fn=>fn(this.state,result));return result;}
   }
   const api={GameEngine,newState,loadSaved,SAVE_KEY};root.GuildEngine=api;if(typeof module!=='undefined'&&module.exports)module.exports=api;
 })(typeof window!=='undefined'?window:globalThis);
