@@ -1,6 +1,7 @@
 (function(root){
   'use strict';
   const C={schemaVersion:2,maxStamina:100,initialGold:0,initialDebt:120,initialHP:30,deadlineDays:4,debtAmounts:Array.from({length:20},(_,i)=>Math.round(120+65*i+9*i*i)),totalDebts:20,totalRaids:20,travelGather:[10,20,30],travelDungeon:[10,20,30],gatherCost:10,stepCost:2,battleStartCost:3,bagSlots:30,overflowSlots:10,skillZoomMin:.35,skillZoomMax:2.5};
+  const decrees={assault:{name:'進軍の旗',description:'以後の襲来で、味方全員の攻撃力+10%。重ねて強化できる。'},relief:{name:'返済の交渉',description:'今後の返済額を10%軽減。今の返済にも適用。'},research:{name:'ギルドの研究',description:'今後取得するスキルの価格を15%軽減。広いビルドを組みやすくする。'}};
   const pets={
     dog:{name:'犬',nick:'コロ',role:'戦闘後の回復',passive:'戦闘勝利後にHP+1',second:'ボス戦で仲間の攻撃+2%',atk:2,def:1,speed:9,color:'#c58859'},
     cat:{name:'猫',nick:'ミケ',role:'酒場と幸運',passive:'酒場日収+5%',second:'宝箱のG+10%',atk:1,def:1,speed:12,color:'#d6ad78'},
@@ -92,6 +93,6 @@
   const weaponProtect=[5,15,40].map((cost,i)=>({nodeId:`heaven:weaponProtect${i+1}`,treeId:'heaven',x:150+i*85,y:160,prerequisites:i?[`heaven:weaponProtect${i}`]:[],unlockKind:'stolen',costG:cost,rarity:'rare',name:`奪われた武器の記憶 ${i+1}`,description:`賞金首の武器奪取率を${30-(i+1)*10}%に下げる。`,effects:[{stat:'weaponProtection',amount:10}]}));
   const allNodes=[...trees.flatMap(t=>t.nodes),...Object.values(jobTrees).flatMap(t=>t.nodes),...heavenTree.nodes,...hiddenNodes,...weaponProtect];
   const nodeMap=Object.fromEntries(allNodes.map(n=>[n.nodeId,n]));
-  const data={C,pets,jobs,allies,gatherAreas,dungeons,enemies,bountyDefs,items,rarityLabels,trees,jobTrees,heavenTree,hiddenNodes,weaponProtect,nodeMap,bookSources,allNodes};
+  const data={C,decrees,pets,jobs,allies,gatherAreas,dungeons,enemies,bountyDefs,items,rarityLabels,trees,jobTrees,heavenTree,hiddenNodes,weaponProtect,nodeMap,bookSources,allNodes};
   root.GameData=data;if(typeof module!=='undefined'&&module.exports)module.exports=data;
 })(typeof window!=='undefined'?window:globalThis);
