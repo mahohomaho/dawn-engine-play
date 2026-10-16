@@ -1,0 +1,13 @@
+{
+  "name": "ギルド再建記",
+  "short_name": "ギルド再建記",
+  "description": "期限までにギルドを守り、記憶を継いで何度でも挑む周回型ゲーム",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#171d2f",
+  "theme_color": "#171d2f",
+  "icons": [
+    {"src": "guild-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"}
+  ]
+}
