@@ -1,6 +1,6 @@
 (function(root){
   'use strict';
-  const C={schemaVersion:2,maxStamina:100,initialGold:0,initialDebt:120,initialHP:30,travelGather:[10,20,30],travelDungeon:[10,20,30],gatherCost:10,stepCost:2,battleStartCost:3,bagSlots:30,overflowSlots:10,skillZoomMin:.35,skillZoomMax:2.5};
+  const C={schemaVersion:2,maxStamina:100,initialGold:0,initialDebt:120,initialHP:30,finalDueDay:35,travelGather:[10,20,30],travelDungeon:[10,20,30],gatherCost:10,stepCost:2,battleStartCost:3,bagSlots:30,overflowSlots:10,skillZoomMin:.35,skillZoomMax:2.5};
   const pets={
     dog:{name:'犬',nick:'コロ',role:'戦闘後の回復',passive:'戦闘勝利後にHP+1',second:'ボス戦で仲間の攻撃+2%',atk:2,def:1,speed:9,color:'#c58859'},
     cat:{name:'猫',nick:'ミケ',role:'酒場と幸運',passive:'酒場日収+5%',second:'宝箱のG+10%',atk:1,def:1,speed:12,color:'#d6ad78'},
@@ -91,4 +91,3 @@
   const data={C,pets,jobs,allies,gatherAreas,dungeons,enemies,bountyDefs,items,rarityLabels,trees,jobTrees,heavenTree,hiddenNodes,weaponProtect,nodeMap,bookSources,allNodes};
   root.GameData=data;if(typeof module!=='undefined'&&module.exports)module.exports=data;
 })(typeof window!=='undefined'?window:globalThis);
-
