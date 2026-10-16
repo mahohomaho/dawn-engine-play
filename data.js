@@ -30,6 +30,16 @@
     {id:'mine',name:'廃鉱',travel:20,unlock:'survival:24',boss:'oreGuardian',book:'mineTome',enemy:'caveBat',trap:[3,7]},
     {id:'tower',name:'星見の塔',travel:30,unlock:'thunder:24',boss:'starGuardian',book:'towerTome',enemy:'starWisp',trap:[5,10]}
   ];
+  // 地図の発見だけを管理する。出発条件・移動費・報酬は既存のエリア定義に従う。
+  const worldMap=[
+    {id:'guild',kind:'guild',x:19,y:62,mark:'⌂',description:'旅の始まりと帰る場所。'},
+    {id:'yard',kind:'gather',x:46,y:73,mark:'✿',initial:true,description:'ギルド近くの草原。薬草を安定して集められる。',backdrop:'area-meadow-v1.png'},
+    {id:'forest',kind:'dungeon',x:39,y:40,mark:'⚔',initial:true,description:'木々の奥へ続く最初の探索路。魔物と宝箱が待つ。',backdrop:'forest-v3.png'},
+    {id:'mist',kind:'gather',x:27,y:28,mark:'✿',description:'深い霧に包まれた森。珍しい葉や茸を探せる。',backdrop:'forest-v3.png',reveal:[{type:'gathers',value:5},{type:'checkpoint',area:'forest',value:10},{type:'skill',id:'gather:1'}]},
+    {id:'mine',kind:'dungeon',x:67,y:42,mark:'⚔',description:'洞窟の奥に眠る廃鉱。戦闘と高価な戦利品が中心。',backdrop:'area-mine-v1.png',reveal:[{type:'checkpoint',area:'forest',value:20},{type:'skill',id:'survival:24'}]},
+    {id:'marsh',kind:'gather',x:79,y:72,mark:'✿',description:'古代の遺構が沈む湿地。貴重な素材を採取できる。',backdrop:'area-marsh-v1.png',reveal:[{type:'reached',id:'mist'},{type:'skill',id:'gather:2'}]},
+    {id:'tower',kind:'dungeon',x:89,y:16,mark:'⚔',description:'山上の星見の塔。強敵と秘伝書を求める深い探索。',backdrop:'area-tower-v1.png',reveal:[{type:'checkpoint',area:'mine',value:20},{type:'skill',id:'thunder:24'}]}
+  ];
   const enemies={
     goblin:{name:'森のゴブリン',hp:12,atk:4,def:0,speed:6,reward:6},caveBat:{name:'坑道コウモリ',hp:27,atk:9,def:2,speed:14,reward:16},starWisp:{name:'星の灯火',hp:44,atk:15,def:4,speed:12,reward:28},
     forestGuardian:{name:'樹海の番人',hp:90,atk:12,def:3,speed:7,reward:55},oreGuardian:{name:'鉄の巨像',hp:160,atk:19,def:7,speed:5,reward:100},starGuardian:{name:'星見の守護者',hp:240,atk:27,def:9,speed:13,reward:160},
@@ -93,6 +103,6 @@
   const weaponProtect=[5,15,40].map((cost,i)=>({nodeId:`heaven:weaponProtect${i+1}`,treeId:'heaven',x:150+i*85,y:160,prerequisites:i?[`heaven:weaponProtect${i}`]:[],unlockKind:'stolen',costG:cost,rarity:'rare',name:`奪われた武器の記憶 ${i+1}`,description:`賞金首の武器奪取率を${30-(i+1)*10}%に下げる。`,effects:[{stat:'weaponProtection',amount:10}]}));
   const allNodes=[...trees.flatMap(t=>t.nodes),...Object.values(jobTrees).flatMap(t=>t.nodes),...heavenTree.nodes,...hiddenNodes,...weaponProtect];
   const nodeMap=Object.fromEntries(allNodes.map(n=>[n.nodeId,n]));
-  const data={C,decrees,pets,jobs,allies,gatherAreas,dungeons,enemies,bountyDefs,items,rarityLabels,trees,jobTrees,heavenTree,hiddenNodes,weaponProtect,nodeMap,bookSources,allNodes};
+  const data={C,decrees,pets,jobs,allies,gatherAreas,dungeons,worldMap,enemies,bountyDefs,items,rarityLabels,trees,jobTrees,heavenTree,hiddenNodes,weaponProtect,nodeMap,bookSources,allNodes};
   root.GameData=data;if(typeof module!=='undefined'&&module.exports)module.exports=data;
 })(typeof window!=='undefined'?window:globalThis);
