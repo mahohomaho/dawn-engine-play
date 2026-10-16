@@ -1,6 +1,6 @@
 (function(root){
   'use strict';
-  const C={schemaVersion:2,maxStamina:100,initialGold:0,initialDebt:120,initialHP:30,deadlineDays:5,debtAmounts:[120,200,320,420,520,680],totalDebts:6,totalRaids:6,travelGather:[10,20,30],travelDungeon:[10,20,30],gatherCost:10,stepCost:2,battleStartCost:3,bagSlots:30,overflowSlots:10,skillZoomMin:.35,skillZoomMax:2.5};
+  const C={schemaVersion:2,maxStamina:100,initialGold:0,initialDebt:120,initialHP:30,deadlineDays:4,debtAmounts:Array.from({length:20},(_,i)=>Math.round(120+65*i+9*i*i)),totalDebts:20,totalRaids:20,travelGather:[10,20,30],travelDungeon:[10,20,30],gatherCost:10,stepCost:2,battleStartCost:3,bagSlots:30,overflowSlots:10,skillZoomMin:.35,skillZoomMax:2.5};
   const pets={
     dog:{name:'犬',nick:'コロ',role:'戦闘後の回復',passive:'戦闘勝利後にHP+1',second:'ボス戦で仲間の攻撃+2%',atk:2,def:1,speed:9,color:'#c58859'},
     cat:{name:'猫',nick:'ミケ',role:'酒場と幸運',passive:'酒場日収+5%',second:'宝箱のG+10%',atk:1,def:1,speed:12,color:'#d6ad78'},
@@ -33,8 +33,12 @@
     goblin:{name:'森のゴブリン',hp:12,atk:4,def:0,speed:6,reward:6},caveBat:{name:'坑道コウモリ',hp:27,atk:9,def:2,speed:14,reward:16},starWisp:{name:'星の灯火',hp:44,atk:15,def:4,speed:12,reward:28},
     forestGuardian:{name:'樹海の番人',hp:90,atk:12,def:3,speed:7,reward:55},oreGuardian:{name:'鉄の巨像',hp:160,atk:19,def:7,speed:5,reward:100},starGuardian:{name:'星見の守護者',hp:240,atk:27,def:9,speed:13,reward:160},
     redcap:{name:'盗賊団長・赤帽子',hp:60,atk:11,def:2,speed:13,reward:60},runawayMage:{name:'逃亡魔術師',hp:80,atk:15,def:1,speed:11,reward:90},
-    raid1:{name:'魔王軍の斥候',hp:42,atk:8,def:1,speed:8,reward:45},raid2:{name:'魔王軍の先兵',hp:85,atk:14,def:3,speed:10,reward:80},raid3:{name:'魔王軍の隊長',hp:150,atk:20,def:5,speed:11,reward:130},raid4:{name:'魔王軍の猛将',hp:190,atk:23,def:6,speed:12,reward:220},raid5:{name:'魔王軍の大将',hp:245,atk:27,def:7,speed:13,reward:300},demonKing:{name:'魔王',hp:330,atk:31,def:9,speed:14,reward:300}
+    raid1:{name:'魔王軍の斥候',hp:42,atk:8,def:1,speed:8,reward:45},raid2:{name:'魔王軍の先兵',hp:85,atk:14,def:3,speed:10,reward:80},raid3:{name:'魔王軍の隊長',hp:210,atk:27,def:7,speed:11,reward:130},raid4:{name:'魔王軍の猛将',hp:255,atk:31,def:8,speed:12,reward:220},raid5:{name:'魔王軍の大将',hp:310,atk:35,def:9,speed:13,reward:300},demonKing:{name:'魔王',hp:2400,atk:155,def:36,speed:25,reward:3000}
   };
+  for(let tier=6;tier<C.totalRaids;tier++){
+    const step=tier-5;
+    enemies[`raid${tier}`]={name:`魔王軍の第${tier}軍団`,hp:310+58*step+4*step*step,atk:Math.round(35+5*step+.15*step*step),def:9+Math.floor(step*1.5),speed:13+Math.floor(step/2),reward:300+100*step};
+  }
   const bountyDefs={redcap:{name:'盗賊団長・赤帽子',area:'forest',enemy:'redcap',reward:60,unique:[['redcapCharm',.10],['redcapJournal',.03]],weapons:['banditDagger','lightSword']},runawayMage:{name:'逃亡魔術師',area:'mine',enemy:'runawayMage',reward:90,unique:[['spellCharm',.10],['mageBook',.03]],weapons:['mageStaff','lightSword']}};
   const items={
     herb:{name:'薬草',kind:'material',rarity:'common',sell:5},blueHerb:{name:'青い薬草',kind:'material',rarity:'rare',sell:12},mushroom:{name:'森のキノコ',kind:'material',rarity:'common',sell:7},moonleaf:{name:'月光葉',kind:'material',rarity:'rare',sell:18},crystalMoss:{name:'結晶苔',kind:'material',rarity:'common',sell:11},ancientSeed:{name:'古代の種',kind:'material',rarity:'rare',sell:28},clover:{name:'夜明けの四つ葉',kind:'material',rarity:'legendary',sell:180},
