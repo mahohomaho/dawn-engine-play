@@ -29,12 +29,13 @@
     return {groups:list,positions,labels,position(node){return positions.get(node.nodeId)||{x:node.x,y:node.y};}};
   }
   function visible(game,data){
-    const owned=game.state.run.skills;
     return [...groups(data).flatMap(group=>group.nodes),...data.hiddenNodes].filter(node=>
-      owned.includes(node.nodeId)||game.canBuyNode(node.nodeId)||node.unlockKind!=='book'&&!(node.prerequisites||[]).length
+      node.unlockKind!=='book'||game.state.run.bookUsed.includes(node.sourceBookId)||game.state.run.skills.includes(node.nodeId)
     );
   }
-  const api={create,visible};
+  function revealed(game,node){return game.state.run.skills.includes(node.nodeId)||game.canBuyNode(node.nodeId);}
+  function prominent(node){return node.rarity==='epic'||node.rarity==='legendary';}
+  const api={create,visible,revealed,prominent};
   if(typeof module!=='undefined'&&module.exports)module.exports=api;
   root.SkillMap=api;
 })(typeof window!=='undefined'?window:globalThis);

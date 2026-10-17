@@ -46,3 +46,31 @@ html,body,#app{height:100dvh;min-height:0;overflow:hidden}#app{max-width:none;di
 .item-stack{width:100%;text-align:left;color:var(--ink)}.item-stack .name{font-size:16px}.item-stack>span:last-child{color:#edc989;white-space:nowrap}.bulk-tools{margin:2px 0 9px;font-size:13px;color:#e8cd9c}.bulk-tools summary{cursor:pointer}.bulk-tools .row{margin-top:8px}
 .stack-backdrop{position:fixed;inset:0;z-index:35;background:#070911b9}.stack-detail{position:fixed;z-index:36;left:50%;top:50%;transform:translate(-50%,-50%);width:min(460px,calc(100vw - 24px));max-height:calc(100dvh - 24px);overflow:auto;padding:18px;border:2px solid #efc582;border-radius:10px;background:#29283a;box-shadow:0 12px 40px #000b}.stack-detail h2{padding-right:28px}.stack-detail p{font-size:14px;line-height:1.5}.stack-close{position:absolute;right:9px;top:7px;border:0;background:none;color:#fff0d4;font-size:27px;line-height:1}
 @media(orientation:landscape){.tutorial-coach{left:calc(50% + 5px);bottom:calc(63px + env(safe-area-inset-bottom));width:min(510px,calc(100vw - 20px));padding:6px 9px}.tutorial-coach span{font-size:11px}}
+
+/* Carved metal and enamel controls replace the flat placeholder buttons. */
+.btn,.nav button,.inventory-tab,.tree-top button,.tree-top select,.map-pin{border-radius:5px;box-shadow:inset 0 1px 0 #fff4d04d,inset 0 -2px 0 #130f1c9c,0 4px 0 #11111b,0 6px 12px #0007;transition:filter .14s ease,transform .14s ease,box-shadow .14s ease}
+.btn{border:1px solid #bca57e;background:linear-gradient(145deg,#594a49 0%,#3a303a 48%,#302b37 100%);color:#ffedd2;text-shadow:0 1px 1px #0009;letter-spacing:.035em;box-shadow:inset 0 1px 0 #f8deb974,inset 0 0 0 2px #1f1b28,0 4px 0 #17131e,0 7px 14px #0008}
+.btn.primary{border-color:#fff0bd;background:linear-gradient(145deg,#fce3aa 0%,#dcae70 55%,#b77b52 100%);color:#3d2b25;text-shadow:0 1px 0 #fff0baad;box-shadow:inset 0 2px 0 #fff9d0,inset 0 0 0 2px #a8694d,0 4px 0 #593d36,0 8px 18px #0009}
+.btn.green{border-color:#add4aa;background:linear-gradient(145deg,#638f72,#2d5d58);box-shadow:inset 0 1px 0 #d5f3d466,inset 0 0 0 2px #204941,0 4px 0 #192d30,0 8px 14px #0008}
+.btn.warn{border-color:#e2a28c;background:linear-gradient(145deg,#935b5c,#5b3849)}
+.btn:hover,.nav button:hover,.inventory-tab:hover,.tree-top button:hover,.map-pin:hover{filter:brightness(1.13)}
+.btn:active,.nav button:active,.inventory-tab:active,.tree-top button:active,.map-pin:active{transform:translateY(3px);box-shadow:inset 0 2px 5px #0006,0 1px 0 #15121b}
+.btn:focus-visible,.nav button:focus-visible,.inventory-tab:focus-visible,.tree-top button:focus-visible,.tree-top select:focus-visible,.tree-top input:focus-visible{outline:2px solid #fff2b1;outline-offset:2px}
+.nav button{border:1px solid #817366;background:linear-gradient(#353243,#242636);color:#e5d7c1;text-shadow:0 1px 2px #0009}
+.nav button.active{border:1px solid #ffe1a0;background:linear-gradient(#675045,#3c3440);color:#ffe6a9;box-shadow:inset 0 0 0 2px #805a42,0 0 12px #f3c57555,0 3px 0 #211622}
+.inventory-tab{border:1px solid #8e806d;background:linear-gradient(#302f3d,#1c2232);color:#dfd4c3}
+.inventory-tab.active{border:1px solid #f2c986;background:linear-gradient(#715641,#403540);color:#ffe4af;box-shadow:inset 0 0 0 2px #9a7048,0 3px 0 #1b1720}
+.tree-top{background:linear-gradient(#343143,#242837);border-bottom-color:#b4956e}
+.tree-top button,.tree-top select{border:1px solid #aa9273;background:linear-gradient(#4d4550,#302e3e);color:#ffead0}
+.tree-top input{border:1px solid #8a7d72;background:#1a2130;color:#f9eacb;box-shadow:inset 0 2px 5px #0008}
+.tree-detail{background:linear-gradient(135deg,#302b3c,#222838);border-color:#b39569}
+.item-stack{border:1px solid #887b68;background:linear-gradient(120deg,#272b3a,#1b2332);box-shadow:inset 0 1px 0 #dfc99e36,0 3px 8px #0004}
+.item-stack:hover{border-color:#e8c48a;background:linear-gradient(120deg,#383345,#242d3d)}
+.stack-detail{border:1px solid #f5d191;background:linear-gradient(155deg,#37303f,#282a3d 55%,#1d2737);box-shadow:inset 0 0 0 3px #70513d,0 16px 50px #000d;padding:20px}
+.stack-detail h2{color:#ffe0a0;font:24px 'DotGothic16',sans-serif;margin:2px 0 14px}.stack-detail h2 small{font-size:15px;color:#dbc39f}
+.stack-kicker{font-size:12px;color:#d9b977;letter-spacing:.13em}
+.stack-lore{font-size:15px!important;line-height:1.75!important;color:#f5e9d7;margin:0 0 14px!important}
+.stack-use{padding:10px 12px;margin:0 0 12px;border-left:3px solid #9bc79b;background:#1b2d32a9}
+.stack-use b{display:block;font-size:13px;color:#bce1b5}.stack-use p{margin:4px 0 0!important;line-height:1.5!important;color:#e3e8d8}
+.stack-facts{display:flex;gap:7px;flex-wrap:wrap;margin:13px 0 16px}.stack-facts span{padding:5px 8px;border:1px solid #746c68;border-radius:4px;background:#181f2d;color:#ead5aa;font-size:12px}
+@media(orientation:landscape) and (max-height:500px){.stack-detail{width:min(760px,calc(100vw - 20px));max-height:calc(100dvh - 18px);padding:12px 16px;display:grid;grid-template-columns:minmax(0,1fr) minmax(250px,41%);grid-template-rows:18px 35px auto auto;gap:4px 16px}.stack-kicker{grid-column:1;grid-row:1}.stack-detail h2{grid-column:1;grid-row:2;margin:0}.stack-lore{grid-column:1;grid-row:3/5;margin:2px 0!important;font-size:13px!important;line-height:1.55!important}.stack-use{grid-column:2;grid-row:1/3;margin:0 22px 0 0;padding:6px 9px}.stack-use b,.stack-use p{font-size:12px}.stack-facts{grid-column:2;grid-row:3;margin:3px 0;align-content:start}.stack-facts span{padding:3px 5px}.stack-detail>.grid2{grid-column:2;grid-row:4;align-self:end}.stack-detail .btn{font-size:12px;min-height:40px;padding:5px 4px}}
