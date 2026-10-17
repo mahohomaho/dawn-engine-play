@@ -1,6 +1,6 @@
 # ギルド再建記
 
-スマートフォン横画面向けの周回型ブラウザゲーム。父が残したギルドの借金を返し、魔王軍の襲来を乗り越えます。20回目の襲来を率いる魔王を倒すと物語が完結します。[公開ページ](https://mahohomaho.github.io/dawn-engine-play/) から遊べます。
+スマートフォンで遊べる周回型ブラウザゲーム。父が残したギルドの借金を返し、魔王軍の襲来を乗り越えます。20回目の襲来を率いる魔王を倒すと物語が完結します。[公開ページ](https://mahohomaho.github.io/dawn-engine-play/) から遊べます。
 
 ## 遊び方
 
@@ -47,4 +47,4 @@ node test-v3.js
 node playthrough.js
 ```
 
-`data.js` と `v3-data.js` に数値とツリー定義、`engine.js` と `v3-engine.js` に状態遷移、`skill-map.js` に統合星図の配置、`skill-icons.js` に星の意匠、`item-lore.js` に品物の説明、`ui.js` に画面と操作を分離しています。カタログは非公開の `dawn-engine/GAME_SPEC_LANDSCAPE.md` から生成しました。試遊用の数値は仕様書の確定値ではありません。収録した全効果が実際の計算へ接続済みではないため、プレイしながら順次調整します。
+`data.js` と `v3-data.js` に数値とツリー定義、`engine.js` と `v3-engine.js` に状態遷移、`skill-map.js` に統合星図の配置、`skill-icons.js` に星の意匠、`item-lore.js` に品物の説明、`ui.js` に画面と操作、`battle-view.js` と `battle.css` に戦闘専用画面と演出を分離しています。カタログは非公開の `dawn-engine/GAME_SPEC_LANDSCAPE.md` から生成しました。試遊用の数値は仕様書の確定値ではありません。収録した全効果が実際の計算へ接続済みではないため、プレイしながら順次調整します。

@@ -32,7 +32,7 @@
       if(hit){hits.push({amount:Number(hit[3]),side:hit[2]===enemyName?'enemy':'party',critical:!!hit[4],actor:hit[1]});continue;}
       const lightning=line.match(/^⚡雷撃 (\d+)$/);
       if(lightning){hits.push({amount:Number(lightning[1]),side:'enemy',lightning:true});continue;}
-      const heal=line.match(/(?:を|ヒール )\+?(\d+)回復$|ヒール \+(\d+)$|HP\+(\d+)/);
+      const heal=line.match(/(?:を|ヒール )\+?(\d+)回復(?:（緊急ヒール）)?$|ヒール \+(\d+)$|HP\+(\d+)/);
       if(heal)hits.push({amount:Number(heal[1]||heal[2]||heal[3]),side:'party',heal:true});
     }
     const kind=action==='GATHER'?'gather':action==='STEP'?'explore':hits.length?'attack':'engage';
