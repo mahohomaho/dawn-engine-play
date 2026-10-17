@@ -74,3 +74,17 @@ html,body,#app{height:100dvh;min-height:0;overflow:hidden}#app{max-width:none;di
 .stack-use b{display:block;font-size:13px;color:#bce1b5}.stack-use p{margin:4px 0 0!important;line-height:1.5!important;color:#e3e8d8}
 .stack-facts{display:flex;gap:7px;flex-wrap:wrap;margin:13px 0 16px}.stack-facts span{padding:5px 8px;border:1px solid #746c68;border-radius:4px;background:#181f2d;color:#ead5aa;font-size:12px}
 @media(orientation:landscape) and (max-height:500px){.stack-detail{width:min(760px,calc(100vw - 20px));max-height:calc(100dvh - 18px);padding:12px 16px;display:grid;grid-template-columns:minmax(0,1fr) minmax(250px,41%);grid-template-rows:18px 35px auto auto;gap:4px 16px}.stack-kicker{grid-column:1;grid-row:1}.stack-detail h2{grid-column:1;grid-row:2;margin:0}.stack-lore{grid-column:1;grid-row:3/5;margin:2px 0!important;font-size:13px!important;line-height:1.55!important}.stack-use{grid-column:2;grid-row:1/3;margin:0 22px 0 0;padding:6px 9px}.stack-use b,.stack-use p{font-size:12px}.stack-facts{grid-column:2;grid-row:3;margin:3px 0;align-content:start}.stack-facts span{padding:3px 5px}.stack-detail>.grid2{grid-column:2;grid-row:4;align-self:end}.stack-detail .btn{font-size:12px;min-height:40px;padding:5px 4px}}
+
+/* 旅の生き物と戦利品は独立した透過ドット絵として描く。 */
+.pet-choice-art,.pet-profile-art,.pet-inline-art,.enemy-portrait,.item-icon,.stack-icon,.loot-icon{object-fit:contain;image-rendering:pixelated;flex:none}
+.choice .pet-choice-art{display:block;width:58px;height:58px;margin:-5px auto 2px;filter:drop-shadow(0 3px 2px #0008)}
+.pet-profile{display:flex;align-items:center;gap:12px;margin:4px 0 10px;background:#1a2231;border:1px solid #6f6a63;border-radius:7px;padding:6px 10px}.pet-profile p{margin:0}.pet-profile-art{width:72px;height:72px}.pet-inline-art{width:30px;height:30px;vertical-align:middle;margin-right:4px}
+.area-party img:nth-child(3){width:48px;height:58px;filter:drop-shadow(0 3px 3px #000b)}
+.scene img.scene-enemy{position:absolute;z-index:1;right:7%;bottom:18%;width:clamp(88px,20%,150px);height:clamp(90px,48%,158px);object-fit:contain;pointer-events:none;filter:drop-shadow(0 5px 5px #000b)}
+.battle-card{min-height:98px;overflow:auto}.enemy-portrait{float:left;width:90px;height:90px;margin:-5px 11px 3px -4px;filter:drop-shadow(0 5px 5px #000a)}
+.battle-card .progress{margin:9px 0}.battle-card p{margin:8px 0 0}
+.item-icon{width:40px;height:40px;filter:drop-shadow(0 2px 2px #0009)}.item-stack .item-icon{width:44px;height:44px}.item .name{min-width:0}.item .row{justify-content:flex-end}
+.stack-detail h2{display:flex;align-items:center;gap:9px}.stack-icon{width:49px;height:49px;filter:drop-shadow(0 3px 3px #0009)}
+.loot-strip span{display:inline-flex;align-items:center;gap:4px}.loot-icon{width:23px;height:23px}.catalog-entry{display:inline-flex;align-items:center;gap:5px}.catalog-entry .item-icon{width:26px;height:26px}
+@media(orientation:landscape) and (max-height:500px){.enemy-portrait{width:66px;height:66px}.battle-card{min-height:72px;padding:7px}.stack-icon{width:32px;height:32px}.stack-detail h2{font-size:19px}.pet-profile-art{width:54px;height:54px}}
+@media(max-width:390px){.item-icon{width:34px;height:34px}.item{gap:5px}.item .row .btn{font-size:11px;padding:4px}}
