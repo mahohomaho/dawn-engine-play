@@ -81,7 +81,14 @@
     const logs = newLines(before.log, before.fight.log);
     // The engine may clear the encounter or trim its 80-line history after the round.
     const relevant = logs.length ? logs : (result?.log || []);
-    const actions = relevant.map(line => parseLine(line, before.heroes, before.enemies)).filter(Boolean);
+    let skillCallout = '';
+    const actions = relevant.flatMap(line => {
+      if (/^.+の.+！$/.test(line)) { skillCallout = line; return []; }
+      const action = parseLine(line, before.heroes, before.enemies);
+      if (!action) return [];
+      if (skillCallout) { action.callout = skillCallout; skillCallout = ''; }
+      return [action];
+    });
     return {
       heroes: before.heroes, enemies: before.enemies,
       defense: before.defense,
@@ -183,7 +190,7 @@
       actor?.classList.add('is-attacking');
       target?.classList.add(action.kind === 'heal' ? 'is-healing' : 'is-hit');
       stage.querySelector('.combat-effect').classList.add(`effect-${action.kind}`);
-      stage.querySelector('.combat-action-callout').textContent = action.line;
+      stage.querySelector('.combat-action-callout').textContent = action.callout ? `${action.callout} ${action.line}` : action.line;
       if (target && action.amount) {
         const previous = health.get(action.target) ?? 0;
         const max = +(target.querySelector('.combat-hpbar')?.getAttribute('aria-valuemax') || 1);
