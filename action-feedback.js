@@ -40,6 +40,20 @@
     const notable=loot[0]&&rank[loot[0].rarity]>=2;
     return {kind,loot,hits,gold,notable:!!notable,empty:action==='GATHER'&&!loot.length,win:['win','bossWin','bountyWin','raidWin','ending'].includes(result?.type),duration:notable?3300:2300};
   }
-  root.GuildActionFeedback={capture,derive,newLines};
+  function moneyReward(before,state,result,action){
+    if(result?.type==='error')return null;
+    const gain=(state.run?.gold||0)-before.gold;
+    if(gain<=0)return null;
+    if(['SELL_ITEM','SELL_STACK','SELL_BULK'].includes(action)&&result.type==='sale'){
+      const detail=result.message.replace(/を\d+Gで売却した$|をまとめて売却し、\d+Gを得た$/,'を売却');
+      return {kind:'sale',title:'売却！',amount:gain,detail};
+    }
+    if(action==='ACCEPT_QUEST'&&result.type==='quest'&&/達成/.test(result.message))return {kind:'quest',title:'依頼達成！',amount:gain,detail:result.message.replace(/達成！.*$/,'を達成')};
+    if(action==='RETURN'&&result.type==='return')return {kind:'return',title:'帰還！',amount:gain,detail:'戦利品を持ち帰った'};
+    if(action==='SLEEP'&&result.type==='day')return {kind:'tavern',title:'酒場収入！',amount:gain,detail:'朝の売上'};
+    if(action==='RESPEC'&&result.type==='respec')return {kind:'refund',title:'返金！',amount:gain,detail:'スキルを振り直した'};
+    return null;
+  }
+  root.GuildActionFeedback={capture,derive,newLines,moneyReward};
   if(typeof module!=='undefined'&&module.exports)module.exports=root.GuildActionFeedback;
 })(typeof window!=='undefined'?window:globalThis);

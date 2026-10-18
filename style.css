@@ -120,3 +120,35 @@ html,body,#app{height:100dvh;min-height:0;overflow:hidden}#app{max-width:none;di
 @keyframes petLevelBounce{from{transform:translateY(18px) scale(.75);opacity:0}60%{transform:translateY(-4px) scale(1.08);opacity:1}to{transform:none;opacity:1}}@keyframes petLevelFlash{from{opacity:0;filter:brightness(2)}to{opacity:1;filter:none}}@keyframes petNumberRise{from{transform:translateY(9px);opacity:0}to{transform:none;opacity:1}}@keyframes petSpark{from{transform:scale(.3) translateY(30px);opacity:0}40%{opacity:1}to{transform:scale(1.2) translateY(-18px);opacity:0}}
 @media (orientation:landscape) and (max-height:450px){.pet-level-dialog{display:grid;grid-template-columns:90px 1fr;gap:2px 12px;text-align:left;padding:8px;max-height:96dvh}.pet-level-dialog .pet-kicker,.pet-level-dialog h2,.pet-level-gains,.pet-new-effect,.pet-level-dialog>small,.pet-level-dialog>.btn{grid-column:2}.pet-level-art{grid-column:1;grid-row:1/6;width:80px;height:80px;align-self:center}.pet-level-dialog h2{font-size:17px;margin:0}.pet-level-dialog h2 small{display:inline}.pet-level-gains{grid-template-columns:repeat(3,minmax(0,1fr));font-size:11px}.pet-level-gains span{display:block;padding:3px}.pet-level-dialog>small{margin:1px}.pet-level-dialog>.btn{min-height:34px}}
 @media (prefers-reduced-motion:reduce){.pet-level-dialog .pet-kicker,.pet-level-art,.pet-level-gains span,.pet-particles{animation:none}}
+
+/* 共通報酬: 操作を止めず、画面上部で金額を主役にする。 */
+.reward-reveal.money-reward{position:fixed;z-index:42;top:calc(env(safe-area-inset-top,0px) + 62px);left:50%;transform:translateX(-50%);width:min(300px,calc(100vw - 28px));max-width:none;pointer-events:none;text-align:center;animation:reward-arrive 2.2s steps(8,end) both}
+.money-reward .reward-amount,.combat-victory .reward-amount{display:block;color:#ffe196;font:700 clamp(25px,7vw,36px) 'DotGothic16',sans-serif;line-height:1.15;text-shadow:2px 2px #4c2e29,0 0 12px #f3c96b99}
+.money-reward small,.combat-victory small{display:block;color:#e2d1ad;font-size:12px;margin-top:3px}
+.gold-chip.gold-rise{animation:gold-rise .75s steps(6,end) both}
+@keyframes gold-rise{0%{box-shadow:0 0 0 #f6d27a00;transform:translateY(3px)}35%{border-color:#ffe4a0;background:#5b4538;box-shadow:0 0 16px #ffd78499;transform:translateY(-2px)}100%{box-shadow:0 0 0 #f6d27a00;transform:none}}
+.area-unlock{position:fixed;z-index:43;top:calc(env(safe-area-inset-top,0px) + 153px);left:50%;transform:translateX(-50%);width:min(330px,calc(100vw - 24px));padding:9px 12px;text-align:center;pointer-events:none;color:#ffedb5;background:#273b38ed;border:3px double #d3db9d;box-shadow:0 5px 0 #151b21,0 0 24px #a2df9b77;font-family:'DotGothic16',sans-serif;animation:unlock-arrive 3.2s steps(8,end) both}
+.area-unlock b,.area-unlock span{display:block}.area-unlock b{font-size:21px}.area-unlock span{font-size:13px;margin-top:4px}
+@keyframes unlock-arrive{0%{opacity:0;transform:translate(-50%,12px)}14%,80%{opacity:1;transform:translate(-50%,0)}100%{opacity:0;transform:translate(-50%,-8px)}}
+
+/* 地形は発見済みだけ描き、未発見領域を青白い霞で覆う。 */
+.map-fog{background:radial-gradient(ellipse at 28% 60%,#899391 0%,#697e83 31%,#455d69 70%,#354858 100%)}
+.map-fog:before{content:'';position:absolute;inset:-8%;background:radial-gradient(ellipse 20% 12% at 14% 25%,#d3ded8a8,transparent 100%),radial-gradient(ellipse 25% 16% at 68% 42%,#b6ccd1a6,transparent 100%),radial-gradient(ellipse 30% 15% at 40% 80%,#b8c5c0a0,transparent 100%),repeating-linear-gradient(18deg,#d5e2dc12 0 12px,#32495100 12px 32px);animation:fog-drift 24s ease-in-out infinite alternate}
+.map-fog:after{color:#e5eae0ba;text-shadow:0 1px 2px #27353a}
+.map-reveal{clip-path:none;--rx:24%;--ry:42%;-webkit-mask-image:radial-gradient(ellipse var(--rx) var(--ry) at var(--x) var(--y),#000 46%,#000d 62%,transparent 100%);mask-image:radial-gradient(ellipse var(--rx) var(--ry) at var(--x) var(--y),#000 46%,#000d 62%,transparent 100%)}
+.map-reveal.newly{animation:fog-clear 1.15s ease-out both}
+.map-pin.locked{border-color:#aeb9bb;color:#f2eee0;background:#43505ccf}.map-pin.locked:after{content:'🔒';position:absolute;right:-7px;top:-9px;font-size:12px;background:#293039;border:1px solid #d2c9b5;padding:1px}
+@keyframes fog-drift{from{transform:translateX(-1.5%)}to{transform:translateX(1.5%)}}
+@keyframes fog-clear{from{opacity:0;filter:brightness(1.6)}to{opacity:1;filter:saturate(.88)}}
+
+/* 星図の操作列をキャンバスから分け、詳細欄の高さを選択時だけ広げる。 */
+.tree-view{padding-bottom:env(safe-area-inset-bottom,0px)}
+.tree-top{display:grid;grid-template-columns:auto minmax(92px,136px) minmax(0,1fr);gap:6px;padding:calc(8px + env(safe-area-inset-top,0px)) max(9px,env(safe-area-inset-right,0px)) 7px max(9px,env(safe-area-inset-left,0px));flex:none}
+.tree-top button,.tree-top select,.tree-top input{min-width:0;min-height:41px}.tree-top input{width:100%}.tree-top .meta{display:block;grid-column:1/-1;width:auto;white-space:nowrap}
+.tree-tools{display:flex;align-items:center;justify-content:flex-end;gap:7px;flex:none;padding:6px max(10px,env(safe-area-inset-right,0px));background:#202537;border-top:1px solid #6c6170}
+.tree-tools button{min-width:46px;min-height:42px;padding:5px 9px;color:#ffe4af;background:#373646;border:1px solid #b99a6b;border-radius:5px;font:17px 'DotGothic16',sans-serif}
+.tree-tools button:first-child{min-width:65px;font-size:14px}.tree-detail.is-empty{min-height:0;max-height:70px;padding:6px 10px}.tree-detail.is-empty p{line-height:1.35;margin:0}.tree-detail.has-selection{min-height:120px;max-height:28dvh;padding:10px 12px}
+.tree-detail h3{font-size:17px;line-height:1.4}.tree-detail p{font-size:14px;line-height:1.45;margin:6px 0}.tree-canvas{border:5px solid #151a27;border-top:0;border-bottom:0}
+@media(orientation:landscape){.tree-view{grid-template-columns:minmax(0,1fr) minmax(230px,25%);grid-template-rows:auto minmax(0,1fr) auto}.tree-top{grid-column:1/-1;grid-row:1;grid-template-columns:auto minmax(110px,160px) minmax(160px,1fr) auto;padding:5px max(10px,env(safe-area-inset-right,0px)) 5px max(10px,env(safe-area-inset-left,0px))}.tree-top .meta{grid-column:4;align-self:center}.tree-canvas{grid-column:1;grid-row:2}.tree-tools{grid-column:1;grid-row:3}.tree-detail,.tree-detail.is-empty,.tree-detail.has-selection{grid-column:2;grid-row:2/4;max-height:none;min-height:0;overflow:auto}.money-reward{top:10px}}
+@media(orientation:portrait){.tree-top{flex-wrap:unset}.tree-top select{width:100%}.tree-top input{width:100%}.tree-detail{border-left:0}.tree-tools{padding-bottom:calc(6px + env(safe-area-inset-bottom,0px))}}
+@media(prefers-reduced-motion:reduce){.map-fog:before,.map-reveal.newly,.money-reward,.area-unlock,.gold-chip.gold-rise{animation:none!important}}

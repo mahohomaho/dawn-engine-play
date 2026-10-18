@@ -145,7 +145,7 @@
     const won = ['win', 'bossWin', 'bountyWin', 'raidWin', 'ending'].includes(playback?.result);
     const lost = ['defeat', 'heaven'].includes(playback?.result);
     const resultLabel = playback && !x?.fight ? (won ? defense ? 'GUILD DEFENDED!' : 'VICTORY!' : lost ? defense ? '防衛線が突破された……' : 'DEFEAT' : '') : '';
-    const reward = won && options.feedback ? `<div class="combat-rewards">${options.feedback.gold ? `+${options.feedback.gold}G` : ''}${options.feedback.loot.map(item => `${escapeHtml(D.items[item.id]?.name || item.id)}${item.count > 1 ? ` ×${item.count}` : ''}`).join(' · ')}</div>` : '';
+    const reward = won && options.feedback ? `<div class="reward-reveal combat-victory" role="status"><b>${defense ? 'GUILD DEFENDED!' : '勝利！'}</b>${options.feedback.gold ? `<strong class="reward-amount">+${options.feedback.gold}G</strong>` : ''}${options.feedback.loot.length ? `<small>${options.feedback.loot.slice(0,3).map(item => `${escapeHtml(D.items[item.id]?.name || item.id)}${item.count > 1 ? ` ×${item.count}` : ''}`).join(' · ')}${options.feedback.loot.length>3?' ほか':''}</small>` : ''}</div>` : '';
     const resolved = !!playback && !fight;
     const controls = resolved ? `<div class="combat-resolved">${defense && won ? 'ギルドの防衛に成功しました！<br>' : defense && lost ? 'ギルドは魔王軍に制圧された。<br>' : ''}${escapeHtml(playback.message)}</div>` : isFighting ? `<div class="combat-main-actions ${defense ? 'defense-actions' : ''}">${btn('次のラウンド', 'battle', { action: 'attack' }, 'primary combat-next')}${defense ? '' : btn('撤退', 'battle', { action: 'retreat' }, 'warn combat-retreat')}</div>
       <div class="combat-secondary">${run.job === 'priest' ? btn('ヒール', 'battle', { action: 'heal' }, 'green') : ''}${run.inventory.some(item => item.defId === 'potion') ? btn('ポーション', 'battle', { action: 'potion' }, 'green') : ''}</div>` : `<div class="combat-main-actions">${run.stamina >= D.C.battleStartCost ? btn('戦闘を始める ⚡3', 'battle', {}, 'primary combat-next') : btn('スタミナ不足 · 帰還', 'return', {}, 'primary combat-next')}${btn('ギルドへ帰還', 'return', {}, 'combat-retreat')}</div>`;
@@ -157,7 +157,7 @@
         <div class="combat-foes">${enemies.map(actor => actorMarkup(actor, 'enemy', options)).join('')}</div>
         <div class="combat-action-callout" role="status" aria-live="polite">${!isFighting && enemies[0] ? `${escapeHtml(enemies[0].name)}が現れた！` : ''}</div>
         ${defense && fight?.round === 0 && !playback ? `<div class="defense-alarm" role="status"><b>魔王軍襲来！！</b><span>${escapeHtml(enemies[0]?.name || '魔王軍')}がギルド前に現れた！</span></div>` : ''}
-        ${resultLabel ? `<div class="combat-result" role="status">${resultLabel}${reward}</div>` : ''}
+        ${won ? reward : resultLabel ? `<div class="combat-result" role="status">${resultLabel}</div>` : ''}
       </div>
       <div class="combat-dock"><div class="combat-summary"><b>${enemies[0] ? escapeHtml(enemies[0].name) : '戦闘'}</b><span>⚡ ${Math.floor(run.stamina)}　${defense ? `編成 ${heroes.length}人` : `🎒 ${(x?.bag?.length || 0) + (x?.overflow?.length || 0)}個`}</span></div>
         ${controls}${resolved ? '' : `<div class="combat-tools">${btn(`自動戦闘 ${auto.battle ? 'ON' : 'OFF'}`, 'auto', { battle: !auto.battle }, `small combat-auto ${auto.battle ? 'is-on' : ''}`)}${btn(`速度 ${options.speed}倍`, 'speed', {}, 'small')}</div>`}

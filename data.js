@@ -22,23 +22,23 @@
   };
   const gatherAreas=[
     {id:'yard',name:'ギルド裏庭',travel:10,unlock:null,empty:.40,common:.55,rare:.048,legendary:.002,commonItem:'herb',rareItem:'blueHerb'},
-    {id:'mist',name:'霧の森',travel:20,unlock:'gather:1',empty:.32,common:.59,rare:.085,legendary:.005,commonItem:'mushroom',rareItem:'moonleaf'},
-    {id:'marsh',name:'古代の湿地',travel:30,unlock:'gather:2',empty:.27,common:.60,rare:.12,legendary:.01,commonItem:'crystalMoss',rareItem:'ancientSeed'}
+    {id:'mist',name:'霧の森',travel:20,unlock:null,requiresBoss:'forest',empty:.32,common:.59,rare:.085,legendary:.005,commonItem:'mushroom',rareItem:'moonleaf'},
+    {id:'marsh',name:'古代の湿地',travel:30,unlock:null,requiresBoss:'mine',empty:.27,common:.60,rare:.12,legendary:.01,commonItem:'crystalMoss',rareItem:'ancientSeed'}
   ];
   const dungeons=[
     {id:'forest',name:'若葉の森',travel:10,unlock:null,boss:'forestGuardian',book:'forestTome',enemy:'goblin',trap:[1,3]},
-    {id:'mine',name:'廃鉱',travel:20,unlock:'survival:24',boss:'oreGuardian',book:'mineTome',enemy:'caveBat',trap:[3,7]},
-    {id:'tower',name:'星見の塔',travel:30,unlock:'thunder:24',boss:'starGuardian',book:'towerTome',enemy:'starWisp',trap:[5,10]}
+    {id:'mine',name:'廃鉱',travel:20,unlock:null,requiresBoss:'forest',boss:'oreGuardian',book:'mineTome',enemy:'caveBat',trap:[3,7]},
+    {id:'tower',name:'星見の塔',travel:30,unlock:null,requiresBoss:'mine',boss:'starGuardian',book:'towerTome',enemy:'starWisp',trap:[5,10]}
   ];
-  // 地図の発見だけを管理する。出発条件・移動費・報酬は既存のエリア定義に従う。
+  // 地図の発見とボス討伐による出発解放は別々に管理する。
   const worldMap=[
     {id:'guild',kind:'guild',x:19,y:62,mark:'⌂',description:'旅の始まりと帰る場所。'},
     {id:'yard',kind:'gather',x:46,y:73,mark:'✿',initial:true,description:'ギルド近くの草原。薬草を安定して集められる。',backdrop:'area-meadow-v1.png'},
     {id:'forest',kind:'dungeon',x:39,y:40,mark:'⚔',initial:true,description:'木々の奥へ続く最初の探索路。魔物と宝箱が待つ。',backdrop:'forest-v3.png'},
-    {id:'mist',kind:'gather',x:27,y:28,mark:'✿',description:'深い霧に包まれた森。珍しい葉や茸を探せる。',backdrop:'forest-v3.png',reveal:[{type:'gathers',value:5},{type:'checkpoint',area:'forest',value:10},{type:'skill',id:'gather:1'}]},
-    {id:'mine',kind:'dungeon',x:67,y:42,mark:'⚔',description:'洞窟の奥に眠る廃鉱。戦闘と高価な戦利品が中心。',backdrop:'area-mine-v1.png',reveal:[{type:'checkpoint',area:'forest',value:20},{type:'skill',id:'survival:24'}]},
-    {id:'marsh',kind:'gather',x:79,y:72,mark:'✿',description:'古代の遺構が沈む湿地。貴重な素材を採取できる。',backdrop:'area-marsh-v1.png',reveal:[{type:'reached',id:'mist'},{type:'skill',id:'gather:2'}]},
-    {id:'tower',kind:'dungeon',x:89,y:16,mark:'⚔',description:'山上の星見の塔。強敵と秘伝書を求める深い探索。',backdrop:'area-tower-v1.png',reveal:[{type:'checkpoint',area:'mine',value:20},{type:'skill',id:'thunder:24'}]}
+    {id:'mist',kind:'gather',x:27,y:28,mark:'✿',description:'深い霧に包まれた森。珍しい葉や茸を探せる。',backdrop:'forest-v3.png',reveal:[{type:'gathers',value:5},{type:'checkpoint',area:'forest',value:10},{type:'boss',area:'forest'}]},
+    {id:'mine',kind:'dungeon',x:67,y:42,mark:'⚔',description:'洞窟の奥に眠る廃鉱。戦闘と高価な戦利品が中心。',backdrop:'area-mine-v1.png',reveal:[{type:'checkpoint',area:'forest',value:20},{type:'boss',area:'forest'}]},
+    {id:'marsh',kind:'gather',x:79,y:72,mark:'✿',description:'古代の遺構が沈む湿地。貴重な素材を採取できる。',backdrop:'area-marsh-v1.png',reveal:[{type:'reached',id:'mist'},{type:'checkpoint',area:'mine',value:10},{type:'boss',area:'mine'}]},
+    {id:'tower',kind:'dungeon',x:89,y:16,mark:'⚔',description:'山上の星見の塔。強敵と秘伝書を求める深い探索。',backdrop:'area-tower-v1.png',reveal:[{type:'checkpoint',area:'mine',value:20},{type:'boss',area:'mine'}]}
   ];
   const enemies={
     goblin:{name:'森のゴブリン',hp:12,atk:4,def:0,speed:6,reward:6},caveBat:{name:'坑道コウモリ',hp:27,atk:9,def:2,speed:14,reward:16},starWisp:{name:'星の灯火',hp:44,atk:15,def:4,speed:12,reward:28},

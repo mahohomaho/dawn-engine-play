@@ -42,10 +42,10 @@ for(const skill of C.skills){const g=skill.group,isJob=!!jobGroup[g],isBook=!!bo
 D.trees=groups.map(g=>byGroup[g[0]]);D.jobTrees=jobs;D.hiddenNodes=hidden;D.nodeMap=Object.fromEntries([...D.trees.flatMap(t=>t.nodes),...Object.values(jobs).flatMap(t=>t.nodes),...hidden,...D.heavenTree.nodes,...D.weaponProtect].map(n=>[n.nodeId,n]));D.allNodes=Object.values(D.nodeMap);D.catalog=C;
 D.gatherAreas=[
  {id:'yard',name:'花の草原',travel:6,unlock:null,empty:.40,common:.54,rare:.058,legendary:.002,commonItem:'I25',rareItem:'I27'},
- {id:'mist',name:'霧の森',travel:12,unlock:null,empty:.34,common:.55,rare:.105,legendary:.005,commonItem:'I26',rareItem:'I28'},
- {id:'marsh',name:'雷鳴の洞窟',travel:18,unlock:null,empty:.30,common:.57,rare:.12,legendary:.01,commonItem:'I29',rareItem:'I30'}
+ {id:'mist',name:'霧の森',travel:12,unlock:null,requiresBoss:'forest',empty:.34,common:.55,rare:.105,legendary:.005,commonItem:'I26',rareItem:'I28'},
+ {id:'marsh',name:'雷鳴の洞窟',travel:18,unlock:null,requiresBoss:'mine',empty:.30,common:.57,rare:.12,legendary:.01,commonItem:'I29',rareItem:'I30'}
 ];
-D.dungeons=[{id:'forest',name:'若葉の森',travel:8,unlock:null,boss:'forestGuardian',book:'I33',enemy:'goblin',trap:[1,3]},{id:'mine',name:'廃鉱',travel:15,unlock:null,boss:'oreGuardian',book:'I34',enemy:'caveBat',trap:[3,7]},{id:'tower',name:'星見の塔',travel:23,unlock:null,boss:'starGuardian',book:'I35',enemy:'starWisp',trap:[5,10]}];
+D.dungeons=[{id:'forest',name:'若葉の森',travel:8,unlock:null,boss:'forestGuardian',book:'I33',enemy:'goblin',trap:[1,3]},{id:'mine',name:'廃鉱',travel:15,unlock:null,requiresBoss:'forest',boss:'oreGuardian',book:'I34',enemy:'caveBat',trap:[3,7]},{id:'tower',name:'星見の塔',travel:23,unlock:null,requiresBoss:'mine',boss:'starGuardian',book:'I35',enemy:'starWisp',trap:[5,10]}];
 D.bountyDefs.redcap.unique=[['I37',.04],['I32',.03]];D.bountyDefs.runawayMage.unique=[['I38',.015],['I32',.03]];
 for(const item of C.items)if(item.kind==='本')D.items[item.id].stackPolicy='none';
 })(typeof window!=='undefined'?window:globalThis);
