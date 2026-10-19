@@ -55,8 +55,20 @@
     herb:{name:'薬草',kind:'material',rarity:'common',sell:5},blueHerb:{name:'青い薬草',kind:'material',rarity:'rare',sell:12},mushroom:{name:'森のキノコ',kind:'material',rarity:'common',sell:7},moonleaf:{name:'月光葉',kind:'material',rarity:'rare',sell:18},crystalMoss:{name:'結晶苔',kind:'material',rarity:'common',sell:11},ancientSeed:{name:'古代の種',kind:'material',rarity:'rare',sell:28},clover:{name:'夜明けの四つ葉',kind:'material',rarity:'legendary',sell:180},
     potion:{name:'ポーション',kind:'consumable',rarity:'uncommon',sell:18},redcapCharm:{name:'赤帽子の護符',kind:'relic',rarity:'rare',sell:40},redcapJournal:{name:'盗賊団長の手記',kind:'book',rarity:'epic',sell:60,stackPolicy:'none'},spellCharm:{name:'魔術師の護符',kind:'relic',rarity:'rare',sell:65},mageBook:{name:'逃亡魔術師の書',kind:'book',rarity:'epic',sell:85,stackPolicy:'none'},
     forestTome:{name:'森の秘伝書',kind:'tome',rarity:'rare',sell:20},mineTome:{name:'廃鉱の秘伝書',kind:'tome',rarity:'rare',sell:25},towerTome:{name:'星見の秘伝書',kind:'tome',rarity:'epic',sell:30},respec:{name:'振り直し札',kind:'respec',rarity:'rare',sell:20},
-    rustySword:{name:'見習いの剣',kind:'weapon',rarity:'common',sell:10,atk:3},banditDagger:{name:'盗賊の短剣',kind:'weapon',rarity:'uncommon',sell:28,atk:5},lightSword:{name:'軽量の剣',kind:'weapon',rarity:'uncommon',sell:24,atk:4},mageStaff:{name:'魔術師の杖',kind:'weapon',rarity:'rare',sell:40,atk:6}
+    rustySword:{name:'見習いの剣',kind:'weapon',rarity:'common',sell:10,atk:3},banditDagger:{name:'盗賊の短剣',kind:'weapon',rarity:'uncommon',sell:28,atk:5},lightSword:{name:'軽量の剣',kind:'weapon',rarity:'uncommon',sell:24,atk:4},mageStaff:{name:'魔術師の杖',kind:'weapon',rarity:'rare',sell:40,atk:6},
+    guildSaber:{name:'ギルドの長剣',kind:'weapon',rarity:'uncommon',sell:130,atk:7,description:'駆け出しの守り手に贈られる、手入れの行き届いた長剣。'},
+    emberBlade:{name:'熾火の刃',kind:'weapon',rarity:'rare',sell:1800,atk:11,description:'赤熱する鉱石で鍛えた刃。廃鉱を越えた剣士の憧れ。'},
+    starLance:{name:'星屑の槍',kind:'weapon',rarity:'epic',sell:14000,atk:16,description:'星見の塔の金属を穂先に封じた、長い旅の証。'},
+    dawnEdge:{name:'暁の大剣',kind:'weapon',rarity:'epic',sell:125000,atk:23,description:'夜明けの光を映す巨剣。手にするには幾度もの遠征が必要。'},
+    kingsOath:{name:'王都の誓剣',kind:'weapon',rarity:'legendary',sell:1250000,atk:31,description:'王都の名工が一振りだけ残した剣。いつかギルドの旗の下へ。'}
   };
+  const shopWeapons=[
+    {id:'rustySword',price:35,jobs:['warrior','thief','priest']},{id:'lightSword',price:48,jobs:['warrior','thief','priest']},
+    {id:'banditDagger',price:56,jobs:['warrior','thief','priest']},{id:'mageStaff',price:80,jobs:['warrior','thief','priest']},
+    {id:'guildSaber',price:260,jobs:['warrior','thief','priest']},{id:'emberBlade',price:3600,jobs:['warrior','thief','priest']},
+    {id:'starLance',price:28000,jobs:['warrior','thief','priest']},{id:'dawnEdge',price:250000,jobs:['warrior','thief','priest']},
+    {id:'kingsOath',price:2500000,jobs:['warrior','thief','priest']}
+  ];
   const rarityLabels={common:'コモン',uncommon:'アンコモン',rare:'レア',epic:'エピック',legendary:'レジェンダリー'};
   const treeSpecs=[['attack','攻撃','#d77560'],['critical','会心','#e5ae61'],['thunder','雷と属性','#80a8db'],['survival','生存','#75c69c'],['bounty','賞金','#e5bd6c'],['luck','幸運と宝箱','#a9a2e8'],['gather','採取','#8ccf86'],['companions','仲間','#d89bbb'],['petIndividual','ペット個体','#7cbcc1'],['petGrowth','ペット育成','#b9ca75'],['tavern','酒場','#d99770'],['processing','加工場','#9bb7a7']];
   const statCycle={attack:[['attack',3],['hp',2],['crit',.5]],critical:[['crit',.5],['attack',2],['critDamage',1]],thunder:[['lightningRate',1],['lightningDamage',1],['attack',1]],survival:[['hp',2],['defense',1],['heal',1]],bounty:[['battleGold',1],['battleGoldPct',1],['bountyGold',1]],luck:[['chestGoldPct',1],['rareRate',.1],['attack',1]],gather:[['gatherSuccess',1],['materialSalePct',1],['rareRate',.1]],companions:[['allyAttack',1],['allyHp',2],['allyDefense',1]],petIndividual:[['petPower',1],['petHp',2],['petRate',.5]],petGrowth:[['petPointPct',2],['petPointPct',2],['petPointPct',3]],tavern:[['tavernGold',1],['mealPower',1],['hp',1]],processing:[['materialSalePct',2],['processSpeedPct',1],['processSlots',0]]};
@@ -103,6 +115,6 @@
   const weaponProtect=[5,15,40].map((cost,i)=>({nodeId:`heaven:weaponProtect${i+1}`,treeId:'heaven',x:150+i*85,y:160,prerequisites:i?[`heaven:weaponProtect${i}`]:[],unlockKind:'stolen',costG:cost,rarity:'rare',name:`奪われた武器の記憶 ${i+1}`,description:`賞金首の武器奪取率を${30-(i+1)*10}%に下げる。`,effects:[{stat:'weaponProtection',amount:10}]}));
   const allNodes=[...trees.flatMap(t=>t.nodes),...Object.values(jobTrees).flatMap(t=>t.nodes),...heavenTree.nodes,...hiddenNodes,...weaponProtect];
   const nodeMap=Object.fromEntries(allNodes.map(n=>[n.nodeId,n]));
-  const data={C,decrees,pets,jobs,allies,gatherAreas,dungeons,worldMap,enemies,bountyDefs,items,rarityLabels,trees,jobTrees,heavenTree,hiddenNodes,weaponProtect,nodeMap,bookSources,allNodes};
+  const data={C,decrees,pets,jobs,allies,gatherAreas,dungeons,worldMap,enemies,bountyDefs,items,shopWeapons,rarityLabels,trees,jobTrees,heavenTree,hiddenNodes,weaponProtect,nodeMap,bookSources,allNodes};
   root.GameData=data;if(typeof module!=='undefined'&&module.exports)module.exports=data;
 })(typeof window!=='undefined'?window:globalThis);
